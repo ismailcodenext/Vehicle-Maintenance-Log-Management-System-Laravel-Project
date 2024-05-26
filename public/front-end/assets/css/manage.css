@@ -1,0 +1,385 @@
+@font-face {
+  font-family: Gilroy;
+  src: url(../fonts/Gilroy-Regular.ttf);
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url(../fonts/Gilroy-Medium.ttf);
+  font-style: medium;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url(../fonts/Gilroy-SemiBold.ttf);
+  font-style: semibold;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url(../fonts/Gilroy-Bold.ttf);
+  font-style: bold;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url(../fonts/Gilroy-Black.ttf);
+  font-style: black;
+  font-weight: 900;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-font: "Gilroy";
+  --bg-color: #09090b;
+  --primary-color: #C3FF19;
+  --btn-color: #C3FF19;
+  --text-color1: #ffffff;
+  --text-color2: #71717a;
+}
+
+/* Scroll Bar CSS Start */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #27272a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--btn-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* Scroll Bar CSS End */
+
+/* Dashboard Start */
+
+.content_wrapper {
+  padding: 0 20px;
+}
+
+/* Service Counter Start */
+
+.service_items {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: minmax(min-content, max-content);
+  padding: 1px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background-color: #18181b;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.service_item {
+  position: relative;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.service_item:not(:last-child):after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  height: calc(100% - 40px);
+  width: 1px;
+  background-color: #27272a;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.service_title {
+  font-family: var(--main-font);
+  font-size: 14px;
+  color: #a6a6a6;
+}
+
+.service_count {
+  color: var(--text-color1);
+  font-family: var(--main-font);
+  font-weight: 700;
+  font-size: 1em;
+}
+
+@media screen and (max-width: 1200px) {
+  .service_items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .service_item:nth-child(3):after {
+    right: 0px;
+    top: 0;
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .service_items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service_items {
+    grid-gap: 20px;
+  }
+
+  .service_item:nth-child(3):after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    height: calc(100% - 40px);
+    width: 1px;
+    background-color: #27272a;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+  }
+
+  .service_item:nth-child(2):after,
+  .service_item:nth-child(4):after {
+    right: 0px;
+    top: 0;
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .service_items {
+    grid-template-columns: 1fr;
+  }
+
+  .service_item::after {
+    right: 0px;
+    top: 0;
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+/* Service Counter End */
+
+/* DNS Management Tab Start */
+
+.nav-tabs {
+  border-color: #27272a !important;
+  padding-left: 20px !important;
+}
+
+.nav-link {
+  color: #52525b !important;
+  font-weight: 500;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  padding: 15px 10px !important;
+  margin: 0 10px !important;
+}
+
+.nav-link.active {
+  color: var(--text-color1) !important;
+  font-family: var(--main-font);
+  border-bottom: 3px solid var(--btn-color) !important;
+}
+
+.tab-content {
+  padding: 0 0 50px 0;
+}
+
+.dns_management_form {
+  background: #18181b;
+  padding: 30px 20px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  margin-top: 20px;
+}
+
+.domain_title {
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  font-weight: 700;
+  font-size: 1.3em;
+  margin-top: 30px;
+}
+
+.domain_text {
+  font-family: var(--main-font);
+  color: #71717a;
+  font-size: 1em;
+}
+
+.dns_management_form h3 {
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+.dns_management_form p {
+  font-family: var(--main-font);
+  color: #71717a;
+  font-size: 1em;
+  margin-bottom: 30px;
+}
+
+.dns_form_items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+}
+
+.zone_form_items {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#dns-selection {
+  color: #52525b;
+  border-radius: 12px;
+  border: 1px solid #27272a;
+  outline: none;
+  background-color: #18181b !important;
+  padding: 10px 30px 10px 10px;
+  width: 100%;
+  border: 1px solid #27272a !important;
+  box-sizing: border-box;
+  background: url("../icons/vps/arrow-down.svg") no-repeat right 10px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.dns_form_item label {
+  display: block;
+  font-family: var(--main-font);
+  font-size: 14px;
+  color: #a1a1aa;
+  padding-left: 8px;
+  margin-bottom: 10px;
+}
+
+.dns_form_item input {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: 1px solid #27272a;
+  outline: none;
+  border-radius: 12px;
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.dns_form_item input::placeholder {
+  color: #52525b;
+}
+
+.dns_management_form .dns_btn {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: var(--btn-color);
+  color: var(--text-color1);
+  font-family: var(--main-font);
+  font-size: 1em;
+  font-weight: 600;
+  padding: 8px 0;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  margin-top: 30px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+.dns_management_form .dns_btn:hover {
+  background: var(--primary-color);
+  color: var(--text-color1);
+}
+
+@media screen and (max-width: 1200px) {
+  .dns_form_items {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .zone_form_items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .dns_form_items {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .zone_form_items {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* DNS Management Tab End */
+
+/* Dashboard End */

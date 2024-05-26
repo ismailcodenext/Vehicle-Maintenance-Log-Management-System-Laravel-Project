@@ -1,0 +1,705 @@
+@font-face {
+  font-family: Altone;
+  src: url(../fonts/Altone.ttf);
+  font-style: normal;
+  font-weight: 500;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-font: "Altone";
+  --bg-color: #000;
+  --bg-01: #111110;
+  --bg-02: #0b0b0b;
+  --primary-color-01: #c3ff19;
+  --primary-color-02: #8dbf00;
+  --btn-color: #c3ff19;
+  --btn-01: #252525;
+  --text-color1: #ffffff;
+  --text-color2: #dddddd;
+  --text-color3: #000000;
+  --text-color4: #9d9d9d;
+  --card-bg: #0e0e0d;
+  --breaker-01: #2a2a29;
+  --breaker-02: #1b1b1b;
+  --breaker-03: #1e1e1e;
+}
+
+/* Scroll Bar CSS Start */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #27272a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--btn-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* Scroll Bar CSS End */
+
+/* Add Fund Modal1 Start */
+
+.add_fund_modal1 {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  z-index: 333;
+  
+}
+
+.add_fund_modal1::-webkit-scrollbar {
+  display: none;
+}
+
+.add_fund_modal1 .modal_wapper {
+  position: relative;
+  max-width: 560px;
+  height: auto !important;
+  background-image: url(../img/dashboard/Modal-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 30px 30px 0;
+  margin: auto;
+  border-radius: 16px;
+}
+
+.add_fund_modal1 .modal_wapper .blur_effect {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background: var(--primary-color-01);
+  filter: blur();
+}
+
+.add_fund_modal1 .close_modal {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.add_fund_modal1 .close_modal:hover {
+  background: rgba(204, 204, 204, 0.2);
+}
+
+.add_fund_modal1 .close_modal i {
+  font-size: 1.2em;
+  color: var(--text-color1);
+}
+
+.add_fund_modal1 .addfund_item {
+  font-family: var(--main-font);
+  text-align: center;
+  padding: 60px 0px 20px 0px;
+}
+
+.add_fund_modal1 .addfund_item img {
+  width: 64px;
+  height: 64px;
+}
+
+.add_fund_modal1 .addfund_item h1 {
+  font-size: 34px;
+  font-weight: 600;
+  padding: 15px 0;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.add_fund_modal1 .addfund_item p {
+  font-size: 16px;
+  margin: 0;
+  color: var(--text-color2);
+}
+
+.add_fund_modal1 .modal_wapper input[type="number"]::-webkit-outer-spin-button,
+.add_fund_modal1 .modal_wapper input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add_fund_modal1 .modal_wapper .form {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.add_fund_modal1 .modal_wapper form {
+  width: 100%;
+  margin: auto;
+  margin: 20px 0;
+}
+
+.add_fund_modal1 .modal_wapper form input {
+  width: 100%;
+  border: 1px solid var(--breaker-01) !important;
+  font-family: var(--main-font);
+  border-radius: 8px;
+  background: var(--bg-02);
+  color: var(--text-color4);
+  padding: 12px 0px 12px 15px;
+  outline: none;
+}
+
+.add_fund_modal1 .modal_wapper form .submit {
+  width: 100%;
+  border: none;
+  background: var(--btn-color);
+  outline: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 576px){
+  .add_fund_modal1 .modal_wapper {
+    width: calc(100% - 40px);
+  }
+  
+}
+
+/* Add Fund Modal1 End */
+
+/* Add Fund Modal2 Start */
+
+.add_fund_modal2 {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  padding: 80px 0;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  z-index: 333;
+  
+}
+
+.add_fund_modal2::-webkit-scrollbar {
+  display: none;
+}
+
+.add_fund_modal2 .modal_wapper {
+  position: relative;
+  max-width: 560px;
+  height: auto;
+  background-image: url(../img/dashboard/Modal-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #373737;
+  padding: 0px 30px 0;
+  margin: auto;
+  border-radius: 16px;
+}
+
+.add_fund_modal2 .close_modal {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.add_fund_modal2 .close_modal:hover {
+  background: rgba(204, 204, 204, 0.2);
+}
+
+.add_fund_modal2 .close_modal i {
+  font-size: 1.2em;
+  color: var(--text-color1);
+}
+
+.add_fund_modal2 .addfund_item {
+  font-family: var(--main-font);
+  text-align: center;
+  padding: 60px 0px 20px 0px;
+}
+
+.add_fund_modal2 .addfund_item img {
+  width: 64px;
+  height: 64px;
+}
+
+.add_fund_modal2 .addfund_item .header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 0px 10px 0px;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.add_fund_modal2 .addfund_item .header p {
+  font-size: 16px;
+  margin: 0;
+  padding-bottom: 20px;
+  color: var(--text-color2);
+}
+
+.add_fund_modal2 .select_item {
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.add_fund_modal2 .select_item input {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 18px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.add_fund_modal2 .select_item .item {
+  width: 100% !important;
+  background: var(--bg-02);
+  border-radius: 8px;
+  border: 1px solid #373737;
+  display: flex;
+  align-items: center !important;
+  padding: 13px 18px;
+}
+
+.add_fund_modal2 .select_item .item p {
+  padding-left: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: var(--main-font);
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.add_fund_modal2 .select_item img {
+  width: 32px;
+  height: 33px;
+}
+
+.add_fund_modal2 .radio {
+  font-size: inherit;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  .add_fund_modal2 .radio {
+    background: var(--btn-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+  }
+
+  .add_fund_modal2 .radio::after {
+    border: 2px solid var(--bg-02);
+    border-top: 0;
+    border-left: 0;
+    content: "";
+    display: block;
+    height: 0.75rem;
+    left: 28%;
+    position: absolute;
+    top: 46%;
+    transform: rotate(45deg) translate(-50%, -50%);
+    width: 0.375rem;
+  }
+
+  .add_fund_modal2 .radio:checked {
+    background: var(--btn-color);
+    border-color: var(--btn-color);
+  }
+
+  .add_fund_modal2 .radio:checked.radio::after {
+    border: 2px solid black;
+    border-top: 0;
+    border-left: 0;
+  }
+}
+
+.add_fund_modal2 .radio:checked~.item {
+  border: 1px solid var(--btn-color) !important;
+}
+
+.add_fund_modal2 .select_methode .next {
+  width: 100%;
+  border-radius: 8px;
+  background: var(--btn-color);
+  color: var(--text-color3);
+  padding: 13px 0px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  border: none;
+  outline: none;
+}
+
+.add_fund_modal2 .select_methode .next span {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 576px){
+  .add_fund_modal2 .modal_wapper {
+    width: calc(100% - 40px);
+  }
+  
+}
+
+/* Add Fund Modal2 End */
+
+/* Add Fund Modal3 Start */
+
+.add_fund_modal3 {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  z-index: 333;
+  
+}
+
+.add_fund_modal3::-webkit-scrollbar {
+  display: none;
+}
+
+.add_fund_modal3 .modal_wapper {
+  position: relative;
+  max-width: 560px;
+  height: auto;
+  background-image: url(../img/dashboard/Modal-bg.png);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  border: 1px solid #373737;
+  padding: 0px 50px 0;
+  margin: auto;
+  border-radius: 16px;
+}
+
+.add_fund_modal3 .close_modal {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.add_fund_modal3 .close_modal:hover {
+  background: rgba(204, 204, 204, 0.2);
+}
+
+.add_fund_modal3 .close_modal i {
+  font-size: 1.2em;
+  color: var(--text-color1);
+}
+
+.add_fund_modal3 .addfund_item {
+  font-family: var(--main-font);
+  text-align: center;
+  padding: 60px 0px 20px 0px;
+}
+
+.add_fund_modal3 .addfund_item .header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 0px 10px 0px;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.add_fund_modal3 .addfund_item .header p {
+  font-size: 16px;
+  margin: 0;
+  padding-bottom: 30px;
+  color: var(--primary-color-01);
+}
+
+.add_fund_modal3 .payment_methode .scaner {
+  width: 126px;
+  border: 1px solid var(--text-color2);
+  border-radius: 6px;
+}
+
+.add_fund_modal3 .payment_methode .scaner img {
+  width: 100%;
+}
+
+.add_fund_modal3 .payment_methode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_fund_modal3 .scner_details button {
+  border: none;
+  background: #e89b05;
+  font-size: 12px;
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  border-radius: 30px;
+  padding: 10px 10px;
+  margin-bottom: 12px;
+}
+
+.add_fund_modal3 .scner_details {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.add_fund_modal3 .scner_details p {
+  font-size: 12px;
+  font-family: var(--main-font);
+  color: var(--text-color4);
+  margin-bottom: 10px;
+}
+
+.add_fund_modal3 .scner_details p span {
+  font-size: 12px;
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  margin-left: 5px;
+}
+
+.add_fund_modal3 .cupon_code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.add_fund_modal3 .cupon_code p {
+  font-size: 16px;
+  color: var(--text-color1);
+  font-family: var(--main-font);
+  margin: 0;
+}
+
+.add_fund_modal3 .cupon_code button {
+  border: none;
+  background: none;
+  margin-left: 10px;
+}
+
+.add_fund_modal3 .information {
+  display: flex;
+}
+
+.add_fund_modal3 .information p {
+  text-align: left;
+  font-size: 12px;
+  font-family: var(--main-font);
+  color: #a48e63;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 576px) {
+
+  .add_fund_modal3 .modal_wapper {
+    width: calc(100% - 40px);
+  }
+
+  .add_fund_modal3 .modal_wapper {
+    padding: 0px 20px 0;
+  }
+
+  .add_fund_modal3 .cupon_code p {
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .add_fund_modal3 .information p {
+    font-size: 10px;
+    margin-left: 8px;
+  }
+
+}
+
+/* Add Fund Modal3 End */
+
+/* Add Fund Modal4 Start */
+
+.add_fund_modal4 {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  z-index: 333;
+  
+}
+
+.add_fund_modal4::-webkit-scrollbar {
+  display: none;
+}
+
+.add_fund_modal4 .modal_wapper {
+  position: relative;
+  max-width: 560px;
+  height: auto;
+  background-image: url(../img/dashboard/Modal-bg.png);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  border: 1px solid #373737;
+  padding: 0px 50px 0;
+  margin: auto;
+  border-radius: 16px;
+}
+
+.add_fund_modal4 .close_modal {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.add_fund_modal4 .close_modal:hover {
+  background: rgba(204, 204, 204, 0.2);
+}
+
+.add_fund_modal4 .close_modal i {
+  font-size: 1.2em;
+  color: var(--text-color1);
+}
+
+.add_fund_modal4 .addfund_item {
+  font-family: var(--main-font);
+  text-align: center;
+  padding: 60px 0px 20px 0px;
+}
+
+.add_fund_modal4 .addfund_item .header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 0px 10px 0px;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.add_fund_modal4 .addfund_item .header p {
+  font-size: 16px;
+  margin: 0;
+  padding-bottom: 30px;
+  color: var(--primary-color-01);
+}
+
+.add_fund_modal4 .recive_icon {
+  text-align: center;
+}
+
+.add_fund_modal4 .recive_icon p {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color1);
+  font-family: var(--main-font);
+  margin-top: -10px;
+}
+
+.add_fund_modal4 .transaction_hash {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.add_fund_modal4 .transaction_hash h1 {
+  font-size: 16px;
+  font-weight: initial;
+  color: var(--text-color4);
+  font-family: var(--main-font);
+}
+
+.add_fund_modal4 .transaction_hash p {
+  font-size: 16px;
+  font-weight: initial;
+  color: var(--primary-color-01);
+  font-family: var(--main-font);
+}
+
+@media screen and (max-width: 576px) {
+  .add_fund_modal4 .modal_wapper {
+    width: calc(100% - 40px);
+  }
+  
+  .add_fund_modal4 .modal_wapper {
+    padding: 0px 30px 0;
+  }
+
+  .add_fund_modal4 .transaction_hash p {
+    font-size: 10px;
+  }
+  
+}
+
+/* Add Fund Modal3 End */

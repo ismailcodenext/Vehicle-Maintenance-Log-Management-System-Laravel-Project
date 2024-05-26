@@ -1,0 +1,439 @@
+@font-face {
+  font-family: Altone;
+  src: url(../fonts/Altone.ttf);
+  font-style: normal;
+  font-weight: 500;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-font: "Altone";
+  --bg-color: #000;
+  --bg-01: #111110;
+  --bg-02: #0b0b0b;
+  --primary-color-01: #c3ff19;
+  --primary-color-02: #8dbf00;
+  --btn-color: #c3ff19;
+  --btn-01: #252525;
+  --text-color1: #ffffff;
+  --text-color2: #dddddd;
+  --text-color3: #000000;
+  --text-color4: #9d9d9d;
+  --card-bg: #0e0e0d;
+  --breaker-01: #2a2a29;
+  --breaker-02: #1b1b1b;
+  --breaker-03: #1e1e1e;
+}
+
+/* Scroll Bar CSS Start */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #27272a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--btn-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* Scroll Bar CSS End */
+
+/* Sign In Start */
+.sign_in {
+  position: relative;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url(../img/dashboard/Sign-in-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* backdrop-filter: blur(3px); */
+}
+
+.sign_in .sign_in_wapper {
+  margin: 100px auto;
+  max-width: 580px;
+  height: auto;
+  background-image: url(../img/dashboard/Modal-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 40px 40px 0;
+  border-radius: 16px;
+}
+
+.sign_in .sign_in_item {
+  font-family: var(--main-font);
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+}
+
+.sign_in .sign_in_item img {
+  width: 64px;
+  height: 64px;
+}
+
+.sign_in .sign_in_item h1 {
+  font-family: var(--main-font);
+  font-size: 34px;
+  font-weight: 600;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.sign_in .sign_in_item p {
+  font-family: var(--main-font);
+  font-size: 16px;
+  margin: 0;
+  padding-bottom: 10px;
+  color: var(--text-color2);
+}
+
+.sign_in .sign_in_wapper input[type="number"]::-webkit-outer-spin-button,
+.sign_in .sign_in_wapper input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sign_in .sign_in_wapper .form {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.sign_in .sign_in_wapper form {
+  width: 100%;
+  margin: auto;
+  margin: 20px 0;
+  padding-top: 0px;
+}
+
+.sign_in .sign_in_wapper form label {
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  padding-bottom: 10px;
+}
+
+.sign_in .sign_in_wapper form .hide_password {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--breaker-01) !important;
+  font-family: var(--main-font);
+  border-radius: 8px;
+  background: var(--bg-02);
+  color: var(--text-color4);
+  outline: none;
+}
+
+.sign_in form .hide_password img {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 15px;
+}
+
+.sign_in .sign_in_wapper form .hide_password input {
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+}
+
+.sign_in .sign_in_wapper form input {
+  width: 100%;
+  border: 1px solid var(--breaker-01) !important;
+  font-family: var(--main-font);
+  border-radius: 8px;
+  background: var(--bg-02);
+  color: var(--text-color4);
+  padding: 14px 0px 14px 15px;
+  outline: none;
+}
+
+.sign_in .sign_in_wapper form .login {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  background: var(--btn-color);
+  padding: 14px 0;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+.sign_in .sign_in_wapper form p {
+  font-size: 16px;
+  margin-top: 40px;
+  padding: 0;
+  font-family: var(--main-font);
+}
+
+.sign_in .sign_in_wapper form p a {
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--primary-color-01);
+}
+
+.sign_in .copyright p {
+  text-align: center;
+  font-size: 15px;
+  color: var(--text-color1);
+  font-family: var(--main-font);
+}
+.sign_in .copyright p span {
+  color: var(--primary-color-01);
+  font-family: var(--main-font);
+}
+
+
+@media screen and (max-width: 576px){
+  .sign_in_wapper {
+    width: calc(100% - 40px);
+    margin: auto;
+    padding: 20px 20px 0 !important;
+  }
+
+  .sign_in .sign_in_item h1 {
+    font-size: 1.8em;
+  }
+  
+}
+
+/* Sign In End */
+
+
+
+/* Create Account Start */
+.create_account {
+  position: relative;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  top: 0;
+  left: 0;
+  background-image: url(../img/dashboard/Sign-in-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* backdrop-filter: blur(3px); */
+}
+
+.create_account .create_account_wapper {
+  margin: 100px auto;
+  max-width: 580px;
+  height: auto;
+  background-image: url(../img/dashboard/Modal-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 40px 40px 0;
+  border-radius: 16px;
+}
+
+.create_account .create_account_item {
+  font-family: var(--main-font);
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+}
+
+.create_account .create_account_item img {
+  width: 64px;
+  height: 64px;
+}
+
+.create_account .create_account_item h1 {
+  font-family: var(--main-font);
+  font-size: 34px;
+  font-weight: 600;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+.create_account .create_account_item p {
+  font-family: var(--main-font);
+  font-size: 16px;
+  margin: 0;
+  padding-bottom: 10px;
+  color: var(--text-color2);
+}
+
+.create_account
+  .create_account_wapper
+  input[type="number"]::-webkit-outer-spin-button,
+.create_account
+  .create_account_wapper
+  input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.create_account .create_account_wapper .form {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.create_account .create_account_wapper form {
+  width: 100%;
+  margin: auto;
+  margin: 20px 0;
+  padding-top: 0px;
+}
+
+.create_account .create_account_wapper form label {
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  font-family: var(--main-font);
+  color: var(--text-color1);
+  padding-bottom: 10px;
+}
+
+.create_account .create_account_wapper form .name_item {
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create_account .create_account_wapper form .name_item span {
+  padding: 0;
+  margin: 0;
+}
+
+.create_account_wapper form .name_item span:nth-child(2) {
+  color: var(--primary-color-01);
+}
+
+.create_account .create_account_wapper form .hide_password {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--breaker-01) !important;
+  font-family: var(--main-font);
+  border-radius: 8px;
+  background: var(--bg-02);
+  color: var(--text-color4);
+  outline: none;
+}
+
+.create_account .create_account_wapper form .hide_password img {
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+}
+
+.create_account .create_account_wapper form .hide_password input {
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+}
+
+.create_account .create_account_wapper form .copy_text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--breaker-01) !important;
+  font-family: var(--main-font);
+  border-radius: 8px;
+  background: var(--bg-02);
+  color: var(--text-color4);
+  outline: none;
+}
+
+.create_account .create_account_wapper form .copy_text img {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+}
+
+.create_account .create_account_wapper form .copy_text input {
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+}
+
+.create_account .create_account_wapper form input {
+  width: 100%;
+  border: 1px solid var(--breaker-01) !important;
+  font-family: var(--main-font);
+  border-radius: 8px;
+  background: var(--bg-02);
+  color: var(--text-color4);
+  padding: 14px 0px 14px 15px;
+  outline: none;
+}
+
+.create_account .create_account_wapper form button {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  background: var(--btn-color);
+  padding: 14px 0;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+.create_account .create_account_wapper form p {
+  font-size: 16px;
+  margin-top: 40px;
+  padding: 0;
+  font-family: var(--main-font);
+}
+
+.create_account .create_account_wapper form p a {
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--primary-color-01);
+}
+
+.create_account .copyright p {
+  text-align: center;
+  font-size: 15px;
+  color: var(--text-color1);
+  font-family: var(--main-font);
+}
+.create_account .copyright p span {
+  color: var(--primary-color-01);
+  font-family: var(--main-font);
+}
+
+
+@media screen and (max-width: 576px){
+  .create_account_wapper {
+    width: calc(100% - 40px);
+    margin: auto;
+    padding: 20px 20px 0 !important;
+  }
+
+  .create_account .create_account_item h1 {
+    font-size: 1.8em;
+  }
+  
+}
+
+/* Create Account End */

@@ -1,0 +1,149 @@
+
+/* invoice prict css end  */
+
+#printable-content {
+    width: 9.2in;
+    margin: 100px auto 0;
+}
+
+.wrapper_invoice {
+    width: 5.8in;
+    height: 8.3in;
+    margin: 0px auto;
+    padding: 20px;
+    background: #fff;
+    font-family: "Outfit" !important;
+    position: relative;
+}
+
+#invoiceheading {
+    padding: 10px 0 !important;
+    text-align: center !important;
+    color: #000000 !important;
+}
+
+#invoiceheading h3, p {
+    margin: 0 !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    font-family: "Outfit" !important;
+}
+
+.section-heading {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.patient-info, .doctor-info, .payment-details {
+    text-align: right !important;
+}
+
+.patient-info div, .doctor-info {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Outfit" !important;
+}
+
+.invoice-print-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-print-table td {
+    padding: 2px 8px !important;
+    font-size: 12px !important;
+}
+
+.invoice_details {
+    display: flex;
+}
+
+.invoice_detail.left {
+    width: 75%;
+}
+
+.invoice_detail.right {
+    width: 35%;
+}
+
+.invoice-print-table th, .invoice-print-table td {
+    border: 1px solid #070505 !important;
+    padding: 2px 8px;
+    color: #000000 !important;
+    text-align: left;
+    font-family: "Outfit" !important;
+}
+
+.invoice-print-table th {
+    color: #000000 !important;
+    text-align: right;
+    font-weight: bold !important;
+    font-size: 12px !important;
+}
+
+.hospital-logo {
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    padding:10px;
+    border-radius: 6px;
+    column-gap: 15px;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.hospital-logo img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.hospital-logo h3 {
+    font-family: "Outfit" !important;
+    font-size: 1.4em !important;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.hospital-logo p {
+    font-family: "Outfit" !important;
+    font-size: 12px !important;
+    line-height: 14px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.invoice_details p {
+    font-family: "Outfit" !important;
+    font-size: 12px !important;
+}
+
+.print_btn {
+    text-align: center;
+    display: block;
+    width: 120px;
+    float: right;
+    border: none;
+    outline: none;
+    padding: 6px 25px !important;
+    font-family: "Outfit" !important;
+    font-size: 20px !important;
+    border-radius: 6px;
+    background: #ff8000;
+}
+
+.branding-test p{
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+    color: #fff;
+    font-size: 9px;
+}
+.devider{
+    width: 40px !important;
+    height: 3px !important;
+    color: black !important;
+}
