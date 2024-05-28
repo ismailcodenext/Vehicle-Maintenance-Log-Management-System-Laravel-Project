@@ -37,6 +37,8 @@ subListItems.forEach((item) => {
   });
 });
 
+
+
 /// sidebar
 
 const toggleSidebar = document.querySelector(".toggle-sidebar");
@@ -64,3 +66,19 @@ function mediaToggle(e) {
   }
 }
 media.addListener(mediaToggle);
+
+let arrows = document.querySelectorAll(".arrow");
+arrows.forEach((arrow) => {
+    arrow.addEventListener("click", (e) => {
+        let arrowParent = e.target.closest("li"); // Find the closest parent <li> element
+
+        // Toggle 'showMenu' and add 'active' class to the clicked item's parent
+        arrowParent.classList.toggle("showMenu");
+    });
+});
+
+let sidebarBtn = document.querySelector(".open_btn");
+console.log(sidebarBtn);
+sidebarBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+});

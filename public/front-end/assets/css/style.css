@@ -1,0 +1,147 @@
+@font-face {
+    font-family: Altone;
+    src: url(../fonts/Altone.ttf);
+    font-style: normal;
+    font-weight: 500;
+}
+
+:root {
+    --main-font: "Altone";
+    --bg-color: #000;
+    --bg-01: #111110;
+    --bg-02: #0B0B0B;
+    --primary-color-01: #C3FF19;
+    --primary-color-02: #8DBF00;
+    --btn-color: #C3FF19;
+    --btn-01: #252525;
+    --text-color1: #ffffff;
+    --text-color2: #DDDDDD;
+    --text-color3: #000000;
+    --text-color4: #9D9D9D;
+    --card-bg: #0E0E0D;
+    --breaker-01: #2A2A29;
+    --breaker-02: #1B1B1B;
+    --breaker-03: #1E1E1E;
+    --red :  #DE0000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+body {
+    background-color: var(--bg-color) !important;}
+
+.actionBtns button{
+    padding: 10px 20px;
+    display: flex;
+    align-self: center;
+    background: var( --primary-color-01);
+    gap: 10px;
+    border: 1px solid var( --primary-color-01);
+    border-radius: 3px;
+    transition: all .5s;
+}
+
+.actionBtns button span:nth-child(2){
+    font-family: var(--main-font);
+    font-weight: 500px;
+    color: var(--bg-color);
+}
+
+.actionBtns button:hover{
+    background: var( --btn-01);
+    border: 1px solid var(--btn-01);
+    color:  var( --primary-color-01) !important;
+}
+
+.actionBtns button:hover.create_btn {
+
+}
+
+.actionBtns button:hover .fa-plus {
+    color: var(--primary-color-01) !important;
+}
+
+
+/*Table Start*/
+.table {
+    width: 100% !important;
+}
+
+
+.table thead th, tr, td {
+    background: var( --btn-01) !important;
+    text-align: start !important;
+}
+
+.table> :not(:last-child)> :last-child>* {
+    border-bottom: none !important;
+}
+
+.dt-input{
+    color: var(--text-color1) !important;
+}
+
+.dt-input option {
+    color: #0B0B0B !important;
+}
+
+.dt-info {
+    color: var(--text-color1) !important;
+}
+
+.modal-footer button:nth-child(1) {
+    background: var(--red) !important;
+
+    font-weight: bold;
+}
+
+.modal-footer button:nth-child(2) {
+    background: var(--primary-color-01) !important;
+
+    font-weight: bold;
+}
+
+.modal-content {
+    background-color:  var( --btn-01)  !important;
+}
+
+.modal  {
+    backdrop-filter: blur(2px);
+}
+
+.modal-title {
+    color: var(--text-color1);
+}
+
+.form_input {
+    background-color:  var( --btn-01) !important;
+    border: 1px solid var(--text-color1) !important;
+    color: var(--text-color1) !important;
+}
+
+.modelBtn {
+    gap: 8px;
+}
+
+.modelBtn button{
+    padding: 5px 20px;
+    display: flex;
+    align-self: center;
+    background: var(--primary-color-01) !important;
+    gap: 10px;
+font-weight: bold;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    transition: all .5s;
+}
+
+.modelBtn button:nth-child(2) {
+    background: var(--red) !important;
+    border: 1px solid var(--red);
+}

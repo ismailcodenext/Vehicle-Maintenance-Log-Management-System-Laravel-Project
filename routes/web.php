@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // ------------Controller Work By  start--------------------
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestController;
 
 // ------------Controller Work By  End--------------------
 
@@ -24,7 +25,7 @@ use App\Http\Controllers\UserController;
 // Open Dashboard API Route
 Route::view('/', 'pages.front-end-page.auth.login-page');
 
-// front-page User API Route Start
+// ALL View API Route Start
 
 Route::view('/vlmms-login-page', 'pages.front-end-page.auth.login-page')->name('login');
 Route::view('/registration', 'pages.front-end-page.auth.registration-page');
@@ -32,7 +33,7 @@ Route::view('/sendOtp', 'pages.front-end-page.auth.send-otp-page');
 Route::view('/verifyOtp', 'pages.front-end-page.auth.verify-otp-page');
 Route::view('/resetPassword', 'pages.front-end-page.auth.reset-pass-page');
 Route::view('/userProfile', 'pages.dashboard.profile-page');
-
+Route::view('/testPage', 'pages.back-end-page.test.test-page');
 
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
@@ -49,10 +50,17 @@ Route::post('/reset-password', [UserController::class, 'ResetPassword'])->middle
 
 // Dashboard API Route start
 // Route::view('/dashboardSummary','pages.back-end-page.dashboard-page');
-Route::view('/dashboardSummary', 'pages.dashboard.dashboard-page')->middleware('auth:sanctum');
+Route::view('/dashboard', 'pages.dashboard.dashboard-page')->middleware('auth:sanctum');
 
 //  Page View API Route
 
 // Dashboard API Route End
 
-// ----------------------------Dashboard Route Work Robiul End-----------------------------------------------------
+//Test all route start
+Route::get("/list-test", [TestController::class, 'TestList'])->middleware('auth:sanctum');
+Route::post("/create-test", [TestController::class, 'TestCreate'])->middleware('auth:sanctum');
+Route::post("/test-by-id", [TestController::class, 'TestById'])->middleware('auth:sanctum');
+Route::post("/update-test", [TestController::class, 'TestUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-test", [TestController::class, 'TestDelete'])->middleware('auth:sanctum');
+//Test all route start end
+

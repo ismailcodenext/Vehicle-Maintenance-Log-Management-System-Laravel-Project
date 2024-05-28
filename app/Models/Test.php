@@ -10,19 +10,7 @@ class Test extends Model
     use HasFactory;
 
     protected $fillable = [
-        'test_code',
-        'test_name',
-        'department',
-        'price',
-        'commission',
-        'status',
-        'test_category_id',
+        'name',
         'user_id',
     ];
-
-    public function invoiceDetails()
-    {
-        return $this->hasMany(InvoiceDetails::class);
-    }
-
 }
