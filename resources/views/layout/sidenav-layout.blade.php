@@ -16,7 +16,7 @@
     <link href="{{asset('css/animate.min.css')}}" rel="stylesheet" />
     <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" />
     <!-- <link href="{{asset('css/style.css')}}" rel="stylesheet" /> -->
-    <!-- 
+    <!--
         <link href="{{asset('css/print-invoice.css')}}" rel="stylesheet" />
 
         <link href="{{asset('css/toastify.min.css')}}" rel="stylesheet" /> -->
@@ -247,7 +247,6 @@
                     </div>
                     <div class="submenu">
                         <!-- <a href="#" ></a> -->
-
                         <button onclick="userlogout()" class="link submenu-title">Log out</button>
                     </div>
                 </li>

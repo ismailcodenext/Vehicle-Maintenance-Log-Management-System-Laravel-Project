@@ -160,7 +160,7 @@ class UserController extends Controller
         // Clear session data
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/diagnostic-login-page');
+        return redirect('/vlmms-login-page');
     }
 
     function UserProfile(Request $request){
