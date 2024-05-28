@@ -1,22 +1,12 @@
 <?php
 
-use App\Http\Controllers\PCController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+
 
 
 // ------------Controller Work By  start--------------------
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\PatientController;
-use App\Http\Controllers\TestCategoryController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\ExpensesCategoryController;
-use App\Http\Controllers\ExpensesController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ReportController;
 
 // ------------Controller Work By  End--------------------
 
@@ -66,4 +56,3 @@ Route::view('/dashboardSummary', 'pages.dashboard.dashboard-page')->middleware('
 // Dashboard API Route End
 
 // ----------------------------Dashboard Route Work Robiul End-----------------------------------------------------
-
