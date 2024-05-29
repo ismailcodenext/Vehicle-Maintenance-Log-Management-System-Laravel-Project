@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,6 +37,8 @@ Route::view('/resetPassword', 'pages.front-end-page.auth.reset-pass-page');
 Route::view('/userProfile', 'pages.dashboard.profile-page');
 Route::view('/testPage', 'pages.back-end-page.test.test-page');
 Route::view('/vehiclesCatagoryPage', 'pages.back-end-page.vehicles_catagories.vehicles_catagories_page');
+Route::view('/driverPage', 'pages.back-end-page.driver.driver-page');
+
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
 Route::post('/user-registration', [UserController::class, 'UserRegistration']);
@@ -57,6 +60,14 @@ Route::view('/dashboard', 'pages.dashboard.dashboard-page')->middleware('auth:sa
 
 // Dashboard API Route End
 
+//Driver all route start
+Route::get("/list-driver", [DriverController::class, 'DriverList'])->middleware('auth:sanctum');
+Route::post("/create-driver", [DriverController::class, 'DriverCreate'])->middleware('auth:sanctum');
+Route::post("/driver-by-id", [DriverController::class, 'DriverById'])->middleware('auth:sanctum');
+Route::post("/update-driver", [DriverController::class, 'DriverUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-driver", [DriverController::class, 'DriverDelete'])->middleware('auth:sanctum');
+//Driver all route end end
+
 //Test all route start
 Route::get("/list-test", [TestController::class, 'TestList'])->middleware('auth:sanctum');
 Route::post("/create-test", [TestController::class, 'TestCreate'])->middleware('auth:sanctum');
@@ -74,3 +85,4 @@ Route::post("/vehicles-catagory-by-id", [VehiclesCatagoryController::class, 'Veh
 Route::post("/update-vehicles-catagory", [VehiclesCatagoryController::class, 'VehiclesCatagoryUpdate'])->middleware('auth:sanctum');
 Route::post("/delete-vehicles-catagory", [VehiclesCatagoryController::class, 'VehiclesCatagoryDelete'])->middleware('auth:sanctum');
 //Vehicles Catagory all route start end
+

@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller
 {
-   public function TestList(){
-       try {
-           $Test_data = Test::get();
-           return response()->json(['status' => 'success', 'Test_data' => $Test_data]);
-       } catch (Exception $e) {
-           return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
-       }
-   }
+    public function TestList()
+    {
+        try {
+            $Test_data = Test::get();
+            return response()->json(['status' => 'success', 'Test_data' => $Test_data]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
+        }
+    }
 
     public function TestCreate(Request $request)
     {
@@ -36,7 +37,8 @@ class TestController extends Controller
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
     }
-    function TestById(Request $request){
+    function TestById(Request $request)
+    {
         try {
             $user_id = Auth::id();
             $request->validate(["id" => 'required|string']);
