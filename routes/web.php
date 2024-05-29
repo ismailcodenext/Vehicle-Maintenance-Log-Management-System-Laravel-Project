@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // ------------Controller Work By  start--------------------
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\VehiclesCatagoryController;
 
 // ------------Controller Work By  End--------------------
 
@@ -34,7 +35,7 @@ Route::view('/verifyOtp', 'pages.front-end-page.auth.verify-otp-page');
 Route::view('/resetPassword', 'pages.front-end-page.auth.reset-pass-page');
 Route::view('/userProfile', 'pages.dashboard.profile-page');
 Route::view('/testPage', 'pages.back-end-page.test.test-page');
-
+Route::view('/vehiclesCatagoryPage', 'pages.back-end-page.vehicles_catagories.vehicles_catagories_page');
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
 Route::post('/user-registration', [UserController::class, 'UserRegistration']);
@@ -64,3 +65,12 @@ Route::post("/update-test", [TestController::class, 'TestUpdate'])->middleware('
 Route::post("/delete-test", [TestController::class, 'TestDelete'])->middleware('auth:sanctum');
 //Test all route start end
 
+
+
+//Vehicles Catagory all route start
+Route::get("/list-vehicles-catagory", [VehiclesCatagoryController::class, 'VehiclesCatagoryList'])->middleware('auth:sanctum');
+Route::post("/create-vehicles-catagory", [VehiclesCatagoryController::class, 'VehiclesCatagoryCreate'])->middleware('auth:sanctum');
+Route::post("/vehicles-catagory-by-id", [VehiclesCatagoryController::class, 'VehiclesCatagoryById'])->middleware('auth:sanctum');
+Route::post("/update-vehicles-catagory", [VehiclesCatagoryController::class, 'VehiclesCatagoryUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-vehicles-catagory", [VehiclesCatagoryController::class, 'VehiclesCatagoryDelete'])->middleware('auth:sanctum');
+//Vehicles Catagory all route start end

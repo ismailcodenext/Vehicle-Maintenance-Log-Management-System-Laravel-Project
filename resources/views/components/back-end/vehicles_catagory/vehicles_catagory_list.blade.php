@@ -7,7 +7,7 @@
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
-                            <h4 style="color: white">Test List</h4>
+                            <h4 style="color: white">Vehicles Catagory List</h4>
                         </div>
                         <div class="align-items-center col actionBtns ">
                             <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end "> <span><i class="fa-solid fa-plus"></i></span>
@@ -23,6 +23,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
+                                <th>Description</th>
+                                <th>Maximum Load Capacity</th>
+                                <th>Seating Capacity</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -51,7 +54,7 @@
 
         try {
             showLoader();
-            let res=await axios.get("/list-test",HeaderToken());
+            let res=await axios.get("/list-vehicles-catagory",HeaderToken());
             hideLoader();
 
             let tableList=$("#tableList");
@@ -60,11 +63,14 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-            res.data['Test_data'].forEach(function (item,index) {
+            res.data['vehicles_data'].forEach(function (item,index) {
                 let row=`<tr>
                     <td>${index+1}</td>
-                    <td>${item['name']}</td>
-                  
+                    <td>${item['category_name']}</td>
+                    <td>${item['description']} </td>
+                    <td>${item['maximum_load_capacity']} Kg</td>
+                    <td>${item['seating_capacity']}</td>
+                   
                     <td>
                      <div style="display: flex;" class="modelBtn">
 

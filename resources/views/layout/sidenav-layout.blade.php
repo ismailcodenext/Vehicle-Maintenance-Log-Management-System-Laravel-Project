@@ -181,7 +181,7 @@
                                         fill="#DDDDDD" />
                                 </svg>
                             </div>
-                            <span class="link_name">Test Sample</span>
+                            <span class="link_name">Vehicles</span>
                         </a>
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </div>
@@ -191,8 +191,8 @@
                         </li>
                         <li>
                             <div class="iocn-link">
-                                <a href="/testPage">
-                                    Test List
+                                <a href="/vehiclesCatagoryPage">
+                                   CateGory List
                                 </a>
                             </div>
                         </li>
