@@ -66,6 +66,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-4 p-1">
+                                <br />
+                                <img class="w-15" id="newImg" src="{{ asset('images/default.jpg') }}" />
+                                <br />
+                            </div>
+                            <div class="col-8 p-1">
+                                <label class="form-label">Image <span class="text-danger">*</span></label>
+                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" type="file"
+                                    class="form-select form_input" id="image">
+
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -90,6 +103,7 @@
             let address = document.getElementById('address').value;
             let driving_history = document.getElementById('driving_history').value;
             let medical_clearance_status = document.getElementById('medical_clearance_status').value;
+            let image = document.getElementById('image').files[0];
 
             if (full_name.length === 0) {
                 errorToast("Name Required !");
@@ -105,6 +119,9 @@
                 formData.append('address', address);
                 formData.append('driving_history', driving_history);
                 formData.append('medical_clearance_status', medical_clearance_status);
+                if (image) {
+                    formData.append('image', image);
+                }
 
 
                 const config = {

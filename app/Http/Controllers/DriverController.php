@@ -24,8 +24,14 @@ class DriverController extends Controller
         try {
             // Get authenticated user's ID
             $user_id = Auth::id();
+            $img = $request->file('image');
+            $t = time();
+            $file_name = $img->getClientOriginalName();
+            $img_name = "{$t}-{$file_name}";
+            $image = "uploads/driver-img/{$img_name}";
+            $img->move(public_path('/uploads/driver-img'), $img_name);
 
-            // Create new test
+            // Create new Driver
             Driver::create([
                 'full_name' => $request->input('full_name'),
                 'license_number' => $request->input('license_number'),
@@ -36,10 +42,11 @@ class DriverController extends Controller
                 'license_expiry_date' => $request->input('license_expiry_date'),
                 'medical_clearance_status' => $request->input('medical_clearance_status'),
                 'driving_history' => $request->input('driving_history'),
+                'image' => $image,
                 'user_id' => $user_id
             ]);
 
-            return response()->json(['status' => 'success', 'message' => 'Test created successfully']);
+            return response()->json(['status' => 'success', 'message' => 'Driver created successfully']);
         } catch (Exception $e) {
             // Handle exceptions
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
@@ -63,6 +70,13 @@ class DriverController extends Controller
     {
         try {
             $user_id = Auth::id();
+            $img = $request->file('image');
+            $t = time();
+            $file_name = $img->getClientOriginalName();
+            $img_name = "{$t}-{$file_name}";
+            $image = "uploads/driver-img/{$img_name}";
+            $img->move(public_path('/uploads/driver-img'), $img_name);
+
             $Driver_update = Driver::find($request->input('id'));
             $Driver_update->full_name = $request->input('full_name');
             $Driver_update->license_number = $request->input('license_number');
@@ -73,9 +87,10 @@ class DriverController extends Controller
             $Driver_update->license_expiry_date = $request->input('license_expiry_date');
             $Driver_update->medical_clearance_status = $request->input('medical_clearance_status');
             $Driver_update->driving_history = $request->input('driving_history');
+            $Driver_update->image = $image;
             $Driver_update->user_id = $user_id;
             $Driver_update->save();
-            return response()->json(['status' => 'success', 'message' => 'Test Update Successful']);
+            return response()->json(['status' => 'success', 'message' => 'Driver Update Successful']);
         } catch (Exception $e) {
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
@@ -93,11 +108,11 @@ class DriverController extends Controller
             $DriverDelete = Driver::find($Driver_Delete_id);
 
             if (!$DriverDelete) {
-                return response()->json(['status' => 'fail', 'message' => 'Test not found.']);
+                return response()->json(['status' => 'fail', 'message' => 'Driver not found.']);
             }
             Driver::where('id', $Driver_Delete_id)->delete();
 
-            return response()->json(['status' => 'success', 'message' => 'Test Delete Successful']);
+            return response()->json(['status' => 'success', 'message' => 'Driver Delete Successful']);
         } catch (Exception $e) {
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }

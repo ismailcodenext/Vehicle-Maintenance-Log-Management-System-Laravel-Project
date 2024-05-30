@@ -67,6 +67,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-4 p-1">
+                                <br />
+                                <img class="w-15" id="edit_newImg" src="{{ asset('images/login_bg.jpg') }}" />
+                                <br />
+                            </div>
+                            <div class="col-8 p-1">
+                                <label class="form-label">Image <span class="text-danger">*</span></label>
+                                <input oninput="edit_newImg.src=window.URL.createObjectURL(this.files[0])"
+                                    type="file" class="form-select form_input" id="edit_image">
+
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -100,6 +113,8 @@
             document.getElementById('edit_address').value = data.address;
             document.getElementById('edit_driving_history').value = data.driving_history;
             document.getElementById('edit_medical_clearance_status').value = data.medical_clearance_status;
+            document.getElementById('edit_newImg').src = data.image;
+            console.log(document.getElementById('newImg').src);
 
 
         } catch (e) {
@@ -132,6 +147,7 @@
             formData.append('address', address);
             formData.append('driving_history', driving_history);
             formData.append('medical_clearance_status', medical_clearance_status);
+            formData.append('image', document.getElementById('edit_image').files[0]);
             formData.append('id', id);
 
             const config = {
