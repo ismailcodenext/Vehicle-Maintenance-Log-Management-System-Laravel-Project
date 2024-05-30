@@ -1,8 +1,9 @@
+<div class="login-bg" style="background: url({{asset('images/login_bg.jpg')}});">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-6 center-screen">
-            <div class="card animated fadeIn w-90 p-4">
-                <div class="card-body">
+            <div class="card animated fadeIn w-90 p-4 card_wrapper">
+                <div class="card-body card_body_wrapper">
                     <h4>SET NEW PASSWORD</h4>
                     <br/>
                     <label>New Password</label>
@@ -16,6 +17,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

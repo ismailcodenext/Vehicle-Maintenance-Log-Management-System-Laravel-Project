@@ -15,7 +15,7 @@
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />
     <link href="{{asset('css/animate.min.css')}}" rel="stylesheet" />
     <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" />
-{{--    <!-- <link href="{{asset('css/style.css')}}" rel="stylesheet" /> -->--}}
+{{--    <link href="{{asset('css/style.css')}}" rel="stylesheet" />--}}
 
 {{--        <link href="{{asset('css/print-invoice.css')}}" rel="stylesheet" />--}}
 

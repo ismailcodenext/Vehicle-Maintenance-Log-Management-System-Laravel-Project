@@ -739,3 +739,69 @@ td {
 .pc_img_input:hover {
     background: #fff !important;
 }
+
+.card_body_wrapper label {
+    color: #ffffff !important;
+}
+
+.card_body_wrapper h4 {
+    color: var( --btn-01) !important;
+}
+.card_wrapper {
+    background: #000000 !important;
+}
+
+.card_body_wrapper input {
+    background:  #ffffff;
+    color: #000000 !important;
+}
+
+.card_body_wrapper button {
+    background: #C3FF19;
+    color: #000000 !important;
+    transition: .5s ease-in-out;
+}
+
+.card_body_wrapper button:hover {
+    background: #2A2A29 !important;
+    border: 1px solid #C3FF19 !important;
+    color: #ffffff !important;
+}
+
+.login_cards {
+    top: 50% !important;
+    width: 530px !important;
+    background: #000000 !important;
+}
+
+.login_heading h2 {
+    font-size: 20px !important;
+    color: #ffffff;
+}
+
+.form_labels {
+    color: #ffffff !important;
+}
+
+.sign_from a{
+    color: #ffffff !important;
+    transition: all .3s ease-in-out;
+}
+
+.sign_from a:hover {
+    color: #C3FF19 !important;
+}
+
+.login_form_input {
+    border: 2px solid #C3FF19 !important;
+    width: 100%;
+    color: #ffffff !important;
+    background: #000000 !important;
+}
+
+
+
+.login_form_input:focus {
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+}

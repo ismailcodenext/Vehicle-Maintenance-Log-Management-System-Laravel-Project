@@ -145,3 +145,11 @@ font-weight: bold;
     background: var(--red) !important;
     border: 1px solid var(--red);
 }
+
+.tableList tr , td {
+    color: var(--text-color1) !important;
+}
+
+.card-body h4 {
+    color: var( --btn-01) !important;
+}

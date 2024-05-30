@@ -1,18 +1,18 @@
 <div class="login-bg" style="background: url({{asset('images/login_bg.jpg')}});">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-7 animated fadeIn col-lg-6 center-screen">
-            <div class="card p-4 login_card" style="background: #fff">
-                <div class="card-body p-0">
-                    <div class="login_logo">
+        <div class="col-md-7 animated fadeIn col-lg-6 center-screen ">
+            <div class="card p-4 login_card card_wrapper" style="background: #fff">
+                <div class="card-body p-0 card_body_wrapper">
+                    <div class="login_logo login_heading">
                         <img class="nav-logo"  src="{{asset('images/logo.jpg')}}"  style="width: 100px; height:100px; margin: 0 auto 10px; display: block;" alt="logo"/>
                         <h2>Vehicle Maintenance Log Management System</h2>
                     </div>
-                    <h2 style="text-align: center">Login</h2>
+                    <h2 style="text-align: center;font-size: 22px; color: white;">Login</h2>
                     <br/>
-                    <input id="email" placeholder="User Email" class="form-control login_form_input" type="email"/>
+                    <input id="email" placeholder="User Email" class="login_form_input" type="email"/>
                     <br/>
-                    <input id="password" placeholder="User Password" class="form-control login_form_input" type="password"/>
+                    <input id="password" placeholder="User Password" class="login_form_input mt-3 mb-2" type="password"/>
                     <br/>
                     <button onclick="SubmitLogin()" class="btn w-100 update_btn mt-2">Sign In</button>
 

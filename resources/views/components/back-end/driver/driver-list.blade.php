@@ -19,7 +19,7 @@
 
                     <div class="table-responsive">
                         <table class="table invoice_table" id="tableData">
-                            <thead>
+                            <thead class="table_headings">
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
