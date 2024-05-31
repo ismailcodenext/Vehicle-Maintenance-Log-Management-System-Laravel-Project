@@ -2,7 +2,7 @@
     <!-- Dashboard Content Start -->
     <div class="content_wrapper">
         <div class="row">
-            <div class="col-md-8 col-sm-8 col-lg-8 mx-auto">
+            <div class="col-md-12 col-sm-12 col-lg-12">
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
