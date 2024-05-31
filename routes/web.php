@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,6 +39,7 @@ Route::view('/userProfile', 'pages.dashboard.profile-page');
 Route::view('/testPage', 'pages.back-end-page.test.test-page');
 Route::view('/vehiclesCategoryPage', 'pages.back-end-page.vehicles_categories.vehicles_categories_page');
 Route::view('/driverPage', 'pages.back-end-page.driver.driver-page');
+Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
 
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
@@ -86,3 +88,6 @@ Route::post("/update-vehicles-category", [VehiclesCategoryController::class, 'Ve
 Route::post("/delete-vehicles-category", [VehiclesCategoryController::class, 'VehiclesCategoryDelete'])->middleware('auth:sanctum');
 //Vehicles Catagory all route start end
 
+//Permission all route
+Route::get("/list-permission", [PermissionController::class, 'permissionList'])->middleware('auth:sanctum');
+Route::post("/create-permission", [PermissionController::class, 'permissionCreate'])->middleware('auth:sanctum');
