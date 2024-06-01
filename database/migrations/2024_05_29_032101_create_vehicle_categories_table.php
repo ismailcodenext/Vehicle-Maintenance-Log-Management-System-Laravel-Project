@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('maximum_load_capacity');
             $table->integer('seating_capacity');
+            $table->enum('status', ['pending', 'active'])->default('pending');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')
                 ->cascadeOnUpdate()->restrictOnDelete();

@@ -26,6 +26,7 @@
                                 <th>Description</th>
                                 <th>Maximum Load Capacity</th>
                                 <th>Seating Capacity</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -63,29 +64,29 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-            res.data['vehicles_data'].forEach(function (item,index) {
-                let row=`<tr>
-                    <td>${index+1}</td>
-                    <td>${item['category_name']}</td>
-                    <td>${item['description']} </td>
-                    <td>${item['maximum_load_capacity']} Kg</td>
-                    <td>${item['seating_capacity']}</td>
-                   
-                    <td>
-                     <div style="display: flex;" class="modelBtn">
+              res.data['vehicles_data'].forEach(function (item, index) {
+                    let statusColor = item['status'] === 'Active' ? 'background-color: ; color: white;' : 'background-color: yellow; color: black;';
+                    let row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${item['category_name']}</td>
+                        <td>${item['description']}</td>
+                        <td>${item['maximum_load_capacity']} Kg</td>
+                        <td>${item['seating_capacity']}</td>
+                        <td style="${statusColor}">${item['status']}</td>
+                        <td>
+                            <div style="display: flex;" class="modelBtn">
+                                <button data-id="${item['id']}" class="float-end editBtn">
+                                    <span><i class="fa-solid fa-pen-to-square"></i></span> Edit
+                                </button>
+                                <button data-id="${item['id']}" class="float-end deleteBtn">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
+                    tableList.append(row);
+                });
 
-                            <button data-id="${item['id']}" class="float-end editBtn"> <span><i class="fa-solid fa-pen-to-square"></i></span>
-                                Edit</button>
-
-
-                            <button data-id="${item['id']}" class="float-end deleteBtn"><i class="fa-solid fa-trash"></i>
-                                Delete</button>
-
-                        </div>
-                    </td>
-                 </tr>`
-                tableList.append(row)
-            })
 
             $('.editBtn').on('click', async function () {
                 let id= $(this).data('id');

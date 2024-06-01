@@ -17,6 +17,11 @@
                                 <input type="text" class="form-control form_input" id="MaximumLoadCapacity">
                                 <label class="form-label">Seating Capacity <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="SeatingCapacity">
+                                <label class="form-label">Status <span class="text-danger">*</span></label>
+                                <select class="form-control form_input" id="Status">
+                                    <option class="form-control form_input" value="active">Active</option>
+                                    <option value="pending">Pending</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -37,11 +42,13 @@
             let  Description= document.getElementById('Description').value;
             let  MaximumLoadCapacity= document.getElementById('MaximumLoadCapacity').value;
             let  SeatingCapacity= document.getElementById('SeatingCapacity').value;
+            let  Status= document.getElementById('Status').value;
 
- 
+
+
             if (CategoryName.length === 0) {
                 errorToast("CategoryName Required !");
-            } 
+            }
             else if (Description.length === 0) {
                 errorToast("Description Required !");
             }else if (MaximumLoadCapacity.length === 0) {
@@ -55,11 +62,13 @@
                 document.getElementById('modal-close').click();
                 showLoader();
                 let res = await axios.post("/create-vehicles-category",
-                { 
+                {
                   category_name:CategoryName,
                   description:Description,
                   maximum_load_capacity:MaximumLoadCapacity,
-                  seating_capacity:SeatingCapacity },
+                  seating_capacity:SeatingCapacity,
+                  status:Status
+                 },
                    HeaderToken());
                 hideLoader();
 

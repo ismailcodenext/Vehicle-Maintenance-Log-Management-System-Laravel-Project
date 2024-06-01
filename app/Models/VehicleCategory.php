@@ -15,5 +15,6 @@ class VehicleCategory extends Model
         'maximum_load_capacity',
         'seating_capacity',
         'user_id',
+        'status',
     ];
 }
