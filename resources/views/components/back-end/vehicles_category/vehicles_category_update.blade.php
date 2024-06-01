@@ -17,6 +17,11 @@
                                 <input type="text" class="form-control form_input" id="MaximumLoadCapacityUpdate">
                                 <label class="form-label"> Seating Capacity *</label>
                                 <input type="text" class="form-control form_input" id="SeatingCapacityUpdate">
+                                <label class="form-label">Status <span class="text-danger">*</span></label>
+                                <select class="form-control form_input" id="StatusUpdate">
+                                    <option value="active">Active</option>
+                                    <option value="pending">Pending</option>
+                                </select>
                                 <input class="d-none" id="updateID">
                             </div>
                         </div>
@@ -32,22 +37,25 @@
 </div>
 
 <script>
-    async function FillUpUpdateForm(id) {
-        try {
-            document.getElementById('updateID').value = id;
-            showLoader();
-            let res = await axios.post("/vehicles-category-by-id", { id: id.toString() }, HeaderToken());
-            hideLoader();
+  async function FillUpUpdateForm(id) {
+    try {
+        document.getElementById('updateID').value = id;
+        showLoader();
+        let res = await axios.post("/vehicles-category-by-id", { id: id.toString() }, HeaderToken());
+        hideLoader();
 
-            let data = res.data.rows;
-            document.getElementById('CateGoryNameUpdate').value = data.category_name;
-            document.getElementById('DescriptionUpdate').value = data.description;
-            document.getElementById('MaximumLoadCapacityUpdate').value = data.maximum_load_capacity;
-            document.getElementById('SeatingCapacityUpdate').value = data.seating_capacity;
-        } catch (e) {
-            unauthorized(e.response.status);
-        }
+        let data = res.data.rows;
+        document.getElementById('CateGoryNameUpdate').value = data.category_name;
+        document.getElementById('DescriptionUpdate').value = data.description;
+        document.getElementById('MaximumLoadCapacityUpdate').value = data.maximum_load_capacity;
+        document.getElementById('SeatingCapacityUpdate').value = data.seating_capacity;
+
+        // Set the status value
+        document.getElementById('StatusUpdate').value = data.status;
+    } catch (e) {
+        unauthorized(e.response.status);
     }
+}
 
 
     async function Update() {
@@ -56,18 +64,21 @@
             let DescriptionUpdate = document.getElementById('DescriptionUpdate').value;
             let MaximumLoadCapacityUpdate = document.getElementById('MaximumLoadCapacityUpdate').value;
             let SeatingCapacityUpdate = document.getElementById('SeatingCapacityUpdate').value;
+            let StatusUpdate = document.getElementById('StatusUpdate').value;
             let updateID = document.getElementById('updateID').value;
-    
+
             document.getElementById('update-modal-close').click();
 
             showLoader();
 
-            let res = await axios.post("/update-vehicles-category",{ 
+            let res = await axios.post("/update-vehicles-category",{
                   id:updateID,
                   category_name:CateGoryNameUpdate,
                   description:DescriptionUpdate,
                   maximum_load_capacity:MaximumLoadCapacityUpdate,
-                  seating_capacity:SeatingCapacityUpdate},
+                  seating_capacity:SeatingCapacityUpdate,
+                  status:StatusUpdate
+                },
                   HeaderToken()
                 );
             hideLoader();

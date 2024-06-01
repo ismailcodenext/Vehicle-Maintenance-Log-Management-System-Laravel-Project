@@ -18,7 +18,7 @@ class VehiclesCategoryController extends Controller
         }
     }
 
-    
+
     public function VehiclesCategoryCreate(Request $request)
     {
         try {
@@ -34,6 +34,7 @@ class VehiclesCategoryController extends Controller
                 'description' => $request->input('description'),
                 'maximum_load_capacity' => $request->input('maximum_load_capacity'),
                 'seating_capacity' => $request->input('seating_capacity'),
+                'status'=>$request->input('status'),
                 'user_id' => $user_id
             ]);
 
@@ -63,8 +64,9 @@ class VehiclesCategoryController extends Controller
                 'description' => $request->input('description'),
                 'maximum_load_capacity' => $request->input('maximum_load_capacity'),
                 'seating_capacity' => $request->input('seating_capacity'),
+                'status'=>$request->input('status'),
             ]);
-          
+
             return response()->json(['status' => 'success', 'message' => 'VehicleCategory Update Successful']);
         } catch (Exception $e) {
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
