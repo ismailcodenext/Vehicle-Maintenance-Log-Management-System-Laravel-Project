@@ -240,7 +240,21 @@
                         <li>
                             <div class="iocn-link">
                                 <a href="/vehiclesCategoryPage">
+                                    Vehicle Category List
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="iocn-link">
+                                <a href="/vehiclesPage">
                                     Vehicles List
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="iocn-link">
+                                <a href="/vehiclesDocumentsPage">
+                                    Vehicle Documents List
                                 </a>
                             </div>
                         </li>

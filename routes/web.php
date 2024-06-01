@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VehiclesCategoryController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\vehicleDocumentRegistrationController;
 
 // ------------Controller Work By  End--------------------
 
@@ -39,6 +41,8 @@ Route::view('/userProfile', 'pages.dashboard.profile-page');
 Route::view('/testPage', 'pages.back-end-page.test.test-page');
 Route::view('/vehiclesCategoryPage', 'pages.back-end-page.vehicles_categories.vehicles_categories_page');
 Route::view('/driverPage', 'pages.back-end-page.driver.driver-page');
+Route::view('/vehiclesPage', 'pages.back-end-page.vehicles.vehicles_page');
+Route::view('/vehiclesDocumentsPage', 'pages.back-end-page.vehicles_documents.vehicles_documents_registrations_page');
 Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
 
 // User Web API Routes
@@ -80,13 +84,30 @@ Route::post("/delete-test", [TestController::class, 'TestDelete'])->middleware('
 
 
 
-//Vehicles Catagory all route start
+//Vehicles Category all route start
 Route::get("/list-vehicles-category", [VehiclesCategoryController::class, 'VehiclesCategoryList'])->middleware('auth:sanctum');
 Route::post("/create-vehicles-category", [VehiclesCategoryController::class, 'VehiclesCategoryCreate'])->middleware('auth:sanctum');
 Route::post("/vehicles-category-by-id", [VehiclesCategoryController::class, 'VehiclesCategoryById'])->middleware('auth:sanctum');
 Route::post("/update-vehicles-category", [VehiclesCategoryController::class, 'VehiclesCategoryUpdate'])->middleware('auth:sanctum');
 Route::post("/delete-vehicles-category", [VehiclesCategoryController::class, 'VehiclesCategoryDelete'])->middleware('auth:sanctum');
-//Vehicles Catagory all route start end
+//Vehicles Category all route start end
+
+//Vehicles all route start
+Route::get("/list-vehicles", [VehicleController::class, 'VehiclesList'])->middleware('auth:sanctum');
+Route::post("/create-vehicles", [VehicleController::class, 'VehicleCreate'])->middleware('auth:sanctum');
+Route::post("/vehicles-by-id", [VehicleController::class, 'VehicleById'])->middleware('auth:sanctum');
+Route::post("/update-vehicles", [VehicleController::class, 'VehiclesUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-vehicles", [VehicleController::class, 'VehiclesDelete'])->middleware('auth:sanctum');
+Route::get("/active-list-vehicles", [VehicleController::class, 'ActiveVehiclesList'])->middleware('auth:sanctum');
+//Vehicles all route end
+
+// Vehicles documents registrations all route start
+Route::post("/create-vehicles-documents", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsCreate'])->middleware('auth:sanctum');
+Route::get("/list-vehicles-documents", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsList'])->middleware('auth:sanctum');
+Route::post("/vehicles-documents-by-id", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsById'])->middleware('auth:sanctum');
+Route::Post("/update-vehicles-documents", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-vehicles-documents", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsDelete'])->middleware('auth:sanctum');
+
 
 //Permission all route
 Route::get("/list-permission", [PermissionController::class, 'permissionList'])->middleware('auth:sanctum');
