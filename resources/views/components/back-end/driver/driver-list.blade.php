@@ -22,9 +22,8 @@
                             <thead class="table_headings">
                                 <tr>
                                     <th>No</th>
+                                    <th>image</th>
                                     <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -62,20 +61,24 @@
             tableList.empty();
 
             res.data['Driver_data'].forEach(function(item, index) {
-                let row = `<tr>
-                    <td>${index+1}</td>
+                let row = `<tr >
+                    <td class="px-3">${index+1}</td>
+
+                    <td><img  width="50" height="50"  src=${item['image'] ? item['image']: "images/default.jpg" } /></td>
                     <td>${item['full_name']}</td>
-                    <td>${item['phone']}</td>
-                    <td>${item['address']}</td>
+
                     <td>
                      <div style="display: flex;" class="modelBtn">
 
-                            <button data-id="${item['id']}" class="float-end editBtn"> <span><i class="fa-solid fa-pen-to-square"></i></span>
+                            <button data-id="${item['id']}" class="float-end btn-sm editBtn"> <span><i class="fa-solid fa-pen-to-square"></i></span>
                                 Edit</button>
 
 
-                            <button data-id="${item['id']}" class="float-end deleteBtn"><i class="fa-solid fa-trash"></i>
+                            <button data-id="${item['id']}" class="float-end btn-sm deleteBtn"><i class="fa-solid fa-trash"></i>
                                 Delete</button>
+
+                            <button data-id="${item['id']}" class="float-end btn-sm viewBtn"><i class="fa-solid fa-eye"></i>
+                                View</button>
 
                         </div>
                     </td>
@@ -89,11 +92,18 @@
                 $("#update-modal").modal('show');
             })
 
+            $('.viewBtn').on('click', async function() {
+                let id = $(this).data('id');
+                await showDriverDetails(id);
+                $("#view-modal").modal('show');
+            })
+
             $('.deleteBtn').on('click', function() {
                 let id = $(this).data('id');
                 $("#delete-modal").modal('show');
                 $("#deleteID").val(id);
             })
+
 
             new DataTable('#tableData', {
                 order: [

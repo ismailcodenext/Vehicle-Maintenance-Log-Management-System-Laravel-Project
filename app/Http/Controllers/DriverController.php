@@ -23,13 +23,28 @@ class DriverController extends Controller
     {
         try {
             // Get authenticated user's ID
+            $request->validate([
+                'full_name' => 'required|string|max:255',
+                'phone' => 'required|string|min:11|max:14|unique:drivers,phone',
+                'email' => 'nullable|string|email|unique:drivers,email',
+                'license_number' => 'required|string|max:10|unique:drivers,license_number',
+                'address' => 'required|string',
+                'date_of_birth' => 'required|date',
+                'license_expiry_date' => 'required|date',
+                'medical_clearance_status' => 'required|boolean',
+                'driving_history' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'status' => 'required|in:Active,Pending'
+            ]);
             $user_id = Auth::id();
-            $img = $request->file('image');
-            $t = time();
-            $file_name = $img->getClientOriginalName();
-            $img_name = "{$t}-{$file_name}";
-            $image = "uploads/driver-img/{$img_name}";
-            $img->move(public_path('/uploads/driver-img'), $img_name);
+            if ($request->hasFile('image')) {
+                $img = $request->file('image');
+                $t = time();
+                $file_name = $img->getClientOriginalName();
+                $img_name = "{$t}-{$file_name}";
+                $image = "uploads/driver-img/{$img_name}";
+                $img->move(public_path('/uploads/driver-img'), $img_name);
+            }
 
             // Create new Driver
             Driver::create([
@@ -43,6 +58,7 @@ class DriverController extends Controller
                 'medical_clearance_status' => $request->input('medical_clearance_status'),
                 'driving_history' => $request->input('driving_history'),
                 'image' => $image,
+                'status' => $request->input('status'),
                 'user_id' => $user_id
             ]);
 
@@ -69,15 +85,33 @@ class DriverController extends Controller
     function DriverUpdate(Request $request)
     {
         try {
+            $id = $request->input('id');
             $user_id = Auth::id();
-            $img = $request->file('image');
-            $t = time();
-            $file_name = $img->getClientOriginalName();
-            $img_name = "{$t}-{$file_name}";
-            $image = "uploads/driver-img/{$img_name}";
-            $img->move(public_path('/uploads/driver-img'), $img_name);
+            $Driver_update = Driver::find($id);
+            $request->validate([
+                'full_name' => 'required|string|max:255',
+                'phone' => 'required|string|max:14|unique:drivers,phone,' . $id,
+                'email' => 'nullable|string|email|unique:drivers,email,' . $id,
+                'license_number' => 'required|string|max:10|unique:drivers,license_number,' . $id,
+                'address' => 'required|string',
+                'date_of_birth' => 'required|date',
+                'license_expiry_date' => 'required|date',
+                'medical_clearance_status' => 'required|boolean',
+                'driving_history' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'status' => 'required|in:Active,Pending'
+            ]);
+            if ($request->hasFile('image')) {
+                $img = $request->file('image');
+                $t = time();
+                $file_name = $img->getClientOriginalName();
+                $img_name = "{$t}-{$file_name}";
+                $Driver_update->image = "uploads/driver-img/{$img_name}";
+                $img->move(public_path('/uploads/driver-img'), $img_name);
+            } else {
+                $Driver_update->image = $request->input('image_url');
+            }
 
-            $Driver_update = Driver::find($request->input('id'));
             $Driver_update->full_name = $request->input('full_name');
             $Driver_update->license_number = $request->input('license_number');
             $Driver_update->phone = $request->input('phone');
@@ -87,7 +121,8 @@ class DriverController extends Controller
             $Driver_update->license_expiry_date = $request->input('license_expiry_date');
             $Driver_update->medical_clearance_status = $request->input('medical_clearance_status');
             $Driver_update->driving_history = $request->input('driving_history');
-            $Driver_update->image = $image;
+
+            $Driver_update->status = $request->input('status');
             $Driver_update->user_id = $user_id;
             $Driver_update->save();
             return response()->json(['status' => 'success', 'message' => 'Driver Update Successful']);

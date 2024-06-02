@@ -1,45 +1,39 @@
 <div class="modal animated zoomIn" style="z-index: 99999999 !important;" id="create-modal" tabindex="-1"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Categories List Create</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create Driver</h5>
             </div>
             <div class="modal-body">
                 <form id="save-form">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Full Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="full_name">
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Phone <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="phone">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 p-1">
-                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <div class="col-6 p-1">
+                                <label class="form-label">Email </label>
                                 <input type="text" class="form-control form_input" id="email">
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control form_input" id="date_of_birth">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">License Number <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="license_number">
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">License Expiry Date <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control form_input" id="license_expiry_date">
                             </div>
@@ -47,17 +41,17 @@
                         <div class="row">
                             <div class="col-12 p-1">
                                 <label class="form-label">Address <span class="text-danger">*</span></label>
-                                <textarea class="form-control form_input" id="address"></textarea>
+                                <textarea class="form-control form_input" id="address" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 p-1">
                                 <label class="form-label">Driving History <span class="text-danger">*</span></label>
-                                <textarea class="form-control form_input" id="driving_history"></textarea>
+                                <textarea class="form-control form_input" id="driving_history" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Medical Clearance Status <span
                                         class="text-danger">*</span></label>
                                 <select class="form-select form_input" id="medical_clearance_status">
@@ -65,15 +59,22 @@
                                     <option value="0">No</option>
                                 </select>
                             </div>
+                            <div class="col-6 p-1">
+                                <label class="form-label"> Status <span class="text-danger">*</span></label>
+                                <select class="form-select form_input" id="status">
+                                    <option value="Active">Active</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-4 p-1">
                                 <br />
-                                <img class="w-15" id="newImg" src="{{ asset('images/default.jpg') }}" />
+                                <img class="w-50 h-50" id="newImg" src="" />
                                 <br />
                             </div>
                             <div class="col-8 p-1">
-                                <label class="form-label">Image <span class="text-danger">*</span></label>
+                                <label class="form-label">Image </label>
                                 <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" type="file"
                                     class="form-select form_input" id="image">
 
@@ -103,10 +104,28 @@
             let address = document.getElementById('address').value;
             let driving_history = document.getElementById('driving_history').value;
             let medical_clearance_status = document.getElementById('medical_clearance_status').value;
-            let image = document.getElementById('image').files[0];
+            let image = document.getElementById('newImg').src ? document.getElementById('newImg').src : document
+                .getElementById('image').files[0];
+            let status = document.getElementById('status').value;
 
             if (full_name.length === 0) {
                 errorToast("Name Required !");
+            } else if (phone.length === 0) {
+                errorToast("Phone Required !");
+            } else if (date_of_birth.length === 0) {
+                errorToast("Date of Birth Required !");
+            } else if (license_number.length === 0) {
+                errorToast("License Number Required !");
+            } else if (license_expiry_date.length === 0) {
+                errorToast("License Expiry Date Required !");
+            } else if (address.length === 0) {
+                errorToast("Address Required !");
+            } else if (driving_history.length === 0) {
+                errorToast("Driving History Required !");
+            } else if (medical_clearance_status.length === 0) {
+                errorToast("Medical Clearance Status Required !");
+            } else if (status.length === 0) {
+                errorToast("Status Required !");
             } else {
                 document.getElementById('modal-close').click();
                 let formData = new FormData();
@@ -119,6 +138,7 @@
                 formData.append('address', address);
                 formData.append('driving_history', driving_history);
                 formData.append('medical_clearance_status', medical_clearance_status);
+                formData.append('medical_clearance_status', status);
                 if (image) {
                     formData.append('image', image);
                 }
