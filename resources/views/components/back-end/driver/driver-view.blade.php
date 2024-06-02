@@ -5,80 +5,28 @@
                 <h3 class=" mt-3 text-danger">Driver Details</h3>
                 <input readonly class="d-none" id="viewID" />
 
-                <div class="container">
+                <div class="container mt-5">
                     <div class="row">
-                        <div class="col-6 p-1">
-                            <label class="form-label">Full Name : </label>
-                            <span id="view_full_name" class="text-white px-3"></span>
-                            <input readonly class="d-none" id="updateID">
+                        <!-- Repeat this section for each driver -->
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <img src="" class="card-img-top" alt="Driver Image" id="view_image">
+                                <div class="card-body">
+                                    <h5 class="card-title">John Doe</h5>
+                                    <p class="card-text"><strong>License Number:</strong> ABC123456</p>
+                                    <p class="card-text"><strong>Phone:</strong> +1 (555) 123-4567</p>
+                                    <p class="card-text"><strong>Email:</strong> johndoe@example.com</p>
+                                    <p class="card-text"><strong>Address:</strong> 1234 Main St, Anytown, USA</p>
+                                    <p class="card-text"><strong>Date of Birth:</strong> 1990-01-01</p>
+                                    <p class="card-text"><strong>License Expiry Date:</strong> 2025-12-31</p>
+                                    <p class="card-text"><strong>Medical Clearance Status:</strong> Yes</p>
+                                    <p class="card-text"><strong>Driving History:</strong> 10 years of accident-free
+                                        driving.</p>
+                                    <p class="card-text"><strong>Status:</strong> Active</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-6 p-1">
-                            <label class="form-label">Phone : </label>
-                            <span id="view_phone" class="text-white px-3"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 p-1">
-                            <label class="form-label">Email : </label>
-                            <span id="view_email" class="text-white px-3"></span>
-
-                        </div>
-                        <div class="col-6 p-1">
-                            <label class="form-label">Date of Birth : </label>
-                            <span id="view_date_of_birth" class="text-white px-3"></span>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 p-1">
-                            <label class="form-label">License Number : </label>
-                            <span id="view_license_number" class="text-white px-3"></span>
-
-                        </div>
-                        <div class="col-6 p-1">
-                            <label class="form-label">License Expiry Date : </label>
-                            <span id="view_license_expiry_date" class="text-white px-3"></span>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 p-1">
-                            <label class="form-label">Address : </label>
-                            <span id="view_address" class="text-white px-3"></span>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 p-1">
-                            <label class="form-label">Driving History : </label>
-                            <span id="view_driving_history" class="text-white px-3"></span>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 p-1">
-                            <label class="form-label">Medical Clearance Status :</label>
-                            <span id="view_medical_clearance_status" class="text-white px-3"></span>
-
-                        </div>
-                        <div class="col-6 p-1">
-                            <label class="form-label"> Status </label>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 p-1">
-                            <br />
-                            <input readonly class="d-none" id="image_url" />
-                            <img class="w-15" id="view_newImg" />
-                            <br />
-                        </div>
-                        <div class="col-8 p-1">
-                            <label class="form-label">Image </label>
-                            <input readonly oninput="view_newImg.src=window.URL.createObjectURL(this.files[0])"
-                                type="file" class="form-select form_input" id="view_image">
-
-                        </div>
+                        <!-- End repeat -->
                     </div>
                 </div>
 
@@ -98,14 +46,6 @@
             }, HeaderToken());
             hideLoader();
 
-            let data = res.data.rows;
-            document.getElementById('view_full_name').innerText = data.full_name;
-            document.getElementById('view_phone').innerText = data.phone;
-            document.getElementById('view_email').innerText = data.email;
-            document.getElementById('view_address').innerText = data.address;
-            document.getElementById('view_full_name').innerText = data.full_name;
-            document.getElementById('view_full_name').innerText = data.full_name;
-            document.getElementById('view_full_name').innerText = data.full_name;
 
 
 

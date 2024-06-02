@@ -23,15 +23,16 @@ class DriverController extends Controller
     {
         try {
             // Get authenticated user's ID
+
             $request->validate([
                 'full_name' => 'required|string|max:255',
-                'phone' => 'required|string|min:11|max:14|unique:drivers,phone',
+                'phone' => 'required|string|unique:drivers,phone',
                 'email' => 'nullable|string|email|unique:drivers,email',
                 'license_number' => 'required|string|max:10|unique:drivers,license_number',
                 'address' => 'required|string',
                 'date_of_birth' => 'required|date',
                 'license_expiry_date' => 'required|date',
-                'medical_clearance_status' => 'required|boolean',
+                'medical_clearance_status' => 'required|in:0,1',
                 'driving_history' => 'required|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'status' => 'required|in:Active,Pending'
@@ -44,6 +45,8 @@ class DriverController extends Controller
                 $img_name = "{$t}-{$file_name}";
                 $image = "uploads/driver-img/{$img_name}";
                 $img->move(public_path('/uploads/driver-img'), $img_name);
+            } else {
+                $image = null;
             }
 
             // Create new Driver
@@ -90,13 +93,13 @@ class DriverController extends Controller
             $Driver_update = Driver::find($id);
             $request->validate([
                 'full_name' => 'required|string|max:255',
-                'phone' => 'required|string|max:14|unique:drivers,phone,' . $id,
+                'phone' => 'required|string|unique:drivers,phone,' . $id,
                 'email' => 'nullable|string|email|unique:drivers,email,' . $id,
                 'license_number' => 'required|string|max:10|unique:drivers,license_number,' . $id,
                 'address' => 'required|string',
                 'date_of_birth' => 'required|date',
                 'license_expiry_date' => 'required|date',
-                'medical_clearance_status' => 'required|boolean',
+                'medical_clearance_status' => 'required|in:0,1',
                 'driving_history' => 'required|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 'status' => 'required|in:Active,Pending'

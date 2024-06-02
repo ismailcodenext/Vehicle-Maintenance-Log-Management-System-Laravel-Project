@@ -23,4 +23,6 @@ class Driver extends Model
         'status',
         'user_id'
     ];
+
+
 }

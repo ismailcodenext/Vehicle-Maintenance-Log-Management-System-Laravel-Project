@@ -118,7 +118,7 @@
             document.getElementById('edit_status').value = data.status;
             document.getElementById('image_url').value = data.image;
             document.getElementById('edit_newImg').src = data.image;
-
+            // console.log(data.medical_clearance_status);
 
         } catch (e) {
             unauthorized(e.response.status);
@@ -158,7 +158,9 @@
             formData.append('id', id);
             if (image) {
                 formData.append('image', image);
+                console.log(formData.get('image'));
             } else {
+                console.log(imgae_url);
                 formData.append('image_url', imgae_url);
             }
             const config = {
@@ -167,7 +169,7 @@
                     ...HeaderToken().headers
                 }
             };
-            console.log(formData.get('status'));
+            // console.log(formData.get('status'));
 
             showLoader();
 
@@ -177,6 +179,7 @@
             if (res.data.status === "success") {
                 successToast(res.data.message);
                 let modal = new bootstrap.Modal(document.getElementById('update-modal'));
+                document.getElementById('update-form').reset();
                 modal.hide();
                 await getList();
             } else {

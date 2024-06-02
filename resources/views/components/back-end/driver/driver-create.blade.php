@@ -104,8 +104,7 @@
             let address = document.getElementById('address').value;
             let driving_history = document.getElementById('driving_history').value;
             let medical_clearance_status = document.getElementById('medical_clearance_status').value;
-            let image = document.getElementById('newImg').src ? document.getElementById('newImg').src : document
-                .getElementById('image').files[0];
+            let image = document.getElementById('image').files[0];
             let status = document.getElementById('status').value;
 
             if (full_name.length === 0) {
@@ -138,12 +137,12 @@
                 formData.append('address', address);
                 formData.append('driving_history', driving_history);
                 formData.append('medical_clearance_status', medical_clearance_status);
-                formData.append('medical_clearance_status', status);
+                formData.append('status', status);
                 if (image) {
                     formData.append('image', image);
                 }
 
-
+                console.log(formData.get('status'));
                 const config = {
                     headers: {
                         'content-type': 'multipart/form-data',
