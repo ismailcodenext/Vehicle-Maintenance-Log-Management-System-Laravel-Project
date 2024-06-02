@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -44,6 +45,7 @@ Route::view('/driverPage', 'pages.back-end-page.driver.driver-page');
 Route::view('/vehiclesPage', 'pages.back-end-page.vehicles.vehicles_page');
 Route::view('/vehiclesDocumentsPage', 'pages.back-end-page.vehicles_documents.vehicles_documents_registrations_page');
 Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
+Route::view('/roles', 'pages.back-end-page.role-permission.role.role-page');
 
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
@@ -109,6 +111,16 @@ Route::Post("/update-vehicles-documents", [VehicleDocumentRegistrationController
 Route::post("/delete-vehicles-documents", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsDelete'])->middleware('auth:sanctum');
 
 
-//Permission all route
+//Permission route all route
 Route::get("/list-permission", [PermissionController::class, 'permissionList'])->middleware('auth:sanctum');
 Route::post("/create-permission", [PermissionController::class, 'permissionCreate'])->middleware('auth:sanctum');
+Route::post("/permission-by-id", [PermissionController::class, 'permissionById'])->middleware('auth:sanctum');
+Route::post("/update-permission", [PermissionController::class, 'permissionUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-permission", [PermissionController::class, 'permissionDelete'])->middleware('auth:sanctum');
+
+//Permission route all route
+Route::get("/list-role", [RoleController::class, 'roleList'])->middleware('auth:sanctum');
+Route::post("/create-role", [RoleController::class, 'roleCreate'])->middleware('auth:sanctum');
+Route::post("/role-by-id", [RoleController::class, 'roleById'])->middleware('auth:sanctum');
+Route::post("/update-role", [RoleController::class, 'roleUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-role", [RoleController::class, 'roleDelete'])->middleware('auth:sanctum');

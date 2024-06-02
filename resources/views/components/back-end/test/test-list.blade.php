@@ -64,7 +64,7 @@
                 let row=`<tr>
                     <td>${index+1}</td>
                     <td>${item['name']}</td>
-                  
+
                     <td>
                      <div style="display: flex;" class="modelBtn">
 

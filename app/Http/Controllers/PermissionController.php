@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
@@ -48,53 +49,13 @@ class PermissionController extends Controller
     public function permissionById(Request $request)
     {
         try {
-//           ensure the user is authenticated
             $user_id = Auth::id();
+            $request->validate(["id" => 'required|string']);
 
-//          Validate the incoming request
-            $request->validate([
-                'id' => 'required|string'
-            ]);
-
-//          check if the user has permission to view this permission
-            $permission = Permission::where('id', $request->input('id'))
-                ->where('user_id', $user_id)
-                ->first();
-
-            if ($permission) {
-                return response()->json([
-                   'status' => 'success',
-                   'permission' => $permission
-                ]);
-            } else {
-                return response()->json([
-                    'status' => 'fail',
-                    'message' => 'Permission not found or access denied!'
-                ]);
-            }
-        } catch (Exception $e) {
+            $rows = Permission::where('id', $request->input('id'))->first();
             return response()->json([
-               'status' => 'fail',
-               'message' => $e->getMessage()
-            ]);
-        }
-    }
-
-    public function permissionUpdate(Request $request, $permission, $id)
-    {
-        try {
-            $user_id = Auth::id();
-            $request->validate([
-               'name' => 'required|string|unique:permissions,name,' . $id,
-            ]);
-
-            $permission->update([
-                'name' => $request->input('name')
-            ]);
-
-            return response()->json([
-               'status' => ('success'),
-               'message' => 'Permission updated successfully!'
+                'status' => 'success',
+                'rows' => $rows
             ]);
         } catch (Exception $e) {
             return response()->json([
@@ -104,18 +65,51 @@ class PermissionController extends Controller
         }
     }
 
-    public function permissionDelete(Permission $permission)
+    public function permissionUpdate(Request $request)
     {
         try {
-            $permission->delete();
+            $permission_Update = Permission::find($request->input('id'));
+            $permission_Update->name = $request->input('name');
+            $permission_Update->save();
+
+            return response()->json([
+               'status' => 'success',
+                'message' => 'Permission updated successfully!'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+               'status' => 'fail',
+                'message' => $e->getMessage()
+            ]);
+        }
+
+    }
+
+    public function permissionDelete(Request $request)
+    {
+        try {
+            $request->validate([
+                'id' => 'required|string|min:1'
+            ]);
+            $Permission_Delete_Id = $request->input('id');
+            $PermissionDelete = Permission::find($Permission_Delete_Id);
+
+            if (!$PermissionDelete) {
+                return response()->json([
+                   'status' => 'fail',
+                   'message' => 'Permission not found'
+                ]);
+            }
+
+            Permission::where('id', $Permission_Delete_Id)->delete();
             return response()->json([
                'status' => 'success',
                'message' => 'Permission deleted successfully!'
             ]);
         } catch (Exception $e) {
             return response()->json([
-                'status' => 'fail',
-                'message' => $e->getMessage()
+               'status' => 'fail',
+               'message' => $e->getMessage()
             ]);
         }
     }

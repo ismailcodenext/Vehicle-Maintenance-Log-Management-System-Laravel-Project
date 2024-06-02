@@ -369,6 +369,11 @@
                                     Permission List
                                 </a>
                             </div>
+                            <div class="iocn-link">
+                                <a href="/roles">
+                                    Role List
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </li>
