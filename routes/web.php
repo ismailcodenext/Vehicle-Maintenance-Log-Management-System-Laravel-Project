@@ -4,6 +4,7 @@
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\VehicleAssignedToDriveController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,6 +47,7 @@ Route::view('/vehiclesPage', 'pages.back-end-page.vehicles.vehicles_page');
 Route::view('/vehiclesDocumentsPage', 'pages.back-end-page.vehicles_documents.vehicles_documents_registrations_page');
 Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
 Route::view('/roles', 'pages.back-end-page.role-permission.role.role-page');
+Route::view('/vehicleAssignedToDriverPage', 'pages.back-end-page.vehicle-assigned-to-driver.vehicle-assigned-to-driver-page');
 
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
@@ -124,3 +126,9 @@ Route::post("/create-role", [RoleController::class, 'roleCreate'])->middleware('
 Route::post("/role-by-id", [RoleController::class, 'roleById'])->middleware('auth:sanctum');
 Route::post("/update-role", [RoleController::class, 'roleUpdate'])->middleware('auth:sanctum');
 Route::post("/delete-role", [RoleController::class, 'roleDelete'])->middleware('auth:sanctum');
+
+Route::get("/list-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverList'])->middleware('auth:sanctum');
+Route::post("/create-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverCreate'])->middleware('auth:sanctum');
+Route::post("/vehicle-assigned-to-driver-by-id", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverById'])->middleware('auth:sanctum');
+Route::post("/update-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverDelete'])->middleware('auth:sanctum');
