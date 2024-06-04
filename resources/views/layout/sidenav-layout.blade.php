@@ -240,7 +240,21 @@
                         <li>
                             <div class="iocn-link">
                                 <a href="/vehiclesCategoryPage">
+                                    Vehicle Category List
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="iocn-link">
+                                <a href="/vehiclesPage">
                                     Vehicles List
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="iocn-link">
+                                <a href="/vehiclesDocumentsPage">
+                                    Vehicle Documents List
                                 </a>
                             </div>
                         </li>
@@ -355,6 +369,11 @@
                                     Permission List
                                 </a>
                             </div>
+                            <div class="iocn-link">
+                                <a href="/roles">
+                                    Role List
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -405,19 +424,40 @@
         <!-- navbar start -->
         <nav class="navbar-wrapper">
             <div class="nav-items d-flex">
-                <div class="profile-item d-flex align-items-center justify-content-center">
+                <div class="profile-item d-flex align-items-center justify-content-center" style="width:300px;">
                     <div class="nav_logo">
-                        <img class="profile-img me-3" src="{{ asset('front-end/assets/img/profile-img.svg') }}">
+                        <img class="profile-img me-3" id="UserProfileImg" width="30px" src="">
                     </div>
-                    <p class="profile-title me-3">@i7kxlpn1
-                    <div class="dropdown">
-                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.002 0.5H0.00195312L8.002 9.5L16.002 0.5Z" fill="white" />
-                        </svg>
+                    <p class="profile-title me-3" id="UsersName" >
+                    <div class="box">
+                        <div class="dropdown">
+                            <span class="left-icon"></span>
+                            <span class="right-icon"></span>
+                            <div class="items">
+                                <a href="/userProfile" style="--i:1;"><span></span> <i class="fa-solid fa-user"></i> Profile</a>
+                                <a href="#" style="--i:2;"><span></span> <i class="fa-solid fa-gear"></i>Setting</a>
+                                <a onclick="userlogout()" style="--i:3;"><span></span> <i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                            </div>
+                        </div>
                     </div>
                     </p>
                 </div>
+{{--                <div class="user-dropdown">--}}
+{{--                    <img class="icon-nav-img" id="UserProfileImg" src="" alt=""/>--}}
+{{--                    <div class="user-dropdown-content">--}}
+{{--                        <div class="mt-4 text-center">--}}
+{{--                            <img class="icon-nav-img" id="UserImges" src="" alt=""/>--}}
+{{--                            <h6 id="Name"></h6>--}}
+{{--                            <hr class="user-dropdown-divider  p-0"/>--}}
+{{--                        </div>--}}
+{{--                        <a href="{{url('/userProfile')}}" class="profileBtn">--}}
+{{--                            <span class="side-bar-item-caption" style="font-weight: 500; font-size: 1em">Profile</span>--}}
+{{--                        </a>--}}
+{{--                        <button  onclick="userlogout()" class="logoutBtn">--}}
+{{--                            <span class="side-bar-item-caption" style="font-weight: 500; font-size: 1.2em">Logout</span>--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="navbar-btns">
                     <div class="add-fund-btn">
                         <button>
@@ -668,8 +708,8 @@
                 let res = await axios.get("/user-profile", HeaderToken());
                 hideLoader();
                 document.getElementById('UserProfileImg').src = res.data.img_url;
-                document.getElementById('UserImges').src = res.data.img_url;
-                document.getElementById('Name').innerText = res.data['firstName'];
+                // document.getElementById('UserImges').src = res.data.img_url;
+                document.getElementById('UsersName').innerText = res.data['firstName'];
             } catch (e) {
                 unauthorized(e.response.status)
             }
@@ -692,7 +732,13 @@
         });
     </script>
 
+<script>
+    const dropdown = document.querySelector('.dropdown');
 
+    dropdown.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+    });
+</script>
 
     </body>
 

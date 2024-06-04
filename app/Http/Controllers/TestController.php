@@ -6,6 +6,7 @@ use App\Models\Test;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TestController extends Controller
 {
@@ -61,6 +62,7 @@ class TestController extends Controller
 
             return response()->json(['status' => 'success', 'message' => 'Test Update Successful']);
         } catch (Exception $e) {
+
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
     }

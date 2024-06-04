@@ -20,6 +20,9 @@ class Driver extends Model
         'medical_clearance_status',
         'driving_history',
         'image',
+        'status',
         'user_id'
     ];
+
+
 }

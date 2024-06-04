@@ -9,38 +9,32 @@
                 <form id="update-form">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Full Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="edit_full_name">
                                 <input class="d-none" id="updateID">
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Phone <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="edit_phone">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 p-1">
-                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <div class="col-6 p-1">
+                                <label class="form-label">Email </label>
                                 <input type="text" class="form-control form_input" id="edit_email">
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control form_input" id="edit_date_of_birth">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">License Number <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="edit_license_number">
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">License Expiry Date <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control form_input" id="edit_license_expiry_date">
                             </div>
@@ -48,17 +42,17 @@
                         <div class="row">
                             <div class="col-12 p-1">
                                 <label class="form-label">Address <span class="text-danger">*</span></label>
-                                <textarea class="form-control form_input" id="edit_address"></textarea>
+                                <textarea class="form-control form_input" id="edit_address" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 p-1">
                                 <label class="form-label">Driving History <span class="text-danger">*</span></label>
-                                <textarea class="form-control form_input" id="edit_driving_history"></textarea>
+                                <textarea class="form-control form_input" id="edit_driving_history" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 p-1">
+                            <div class="col-6 p-1">
                                 <label class="form-label">Medical Clearance Status <span
                                         class="text-danger">*</span></label>
                                 <select class="form-select form_input" id="edit_medical_clearance_status">
@@ -66,15 +60,23 @@
                                     <option value="0">No</option>
                                 </select>
                             </div>
+                            <div class="col-6 p-1">
+                                <label class="form-label"> Status <span class="text-danger">*</span></label>
+                                <select class="form-select form_input" id="edit_status">
+                                    <option value="Active">Active</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-4 p-1">
                                 <br />
-                                <img class="w-15" id="edit_newImg" src="{{ asset('images/login_bg.jpg') }}" />
+                                <input class="d-none" id="image_url" />
+                                <img class="w-15" id="edit_newImg" />
                                 <br />
                             </div>
                             <div class="col-8 p-1">
-                                <label class="form-label">Image <span class="text-danger">*</span></label>
+                                <label class="form-label">Image </label>
                                 <input oninput="edit_newImg.src=window.URL.createObjectURL(this.files[0])"
                                     type="file" class="form-select form_input" id="edit_image">
 
@@ -113,9 +115,10 @@
             document.getElementById('edit_address').value = data.address;
             document.getElementById('edit_driving_history').value = data.driving_history;
             document.getElementById('edit_medical_clearance_status').value = data.medical_clearance_status;
+            document.getElementById('edit_status').value = data.status;
+            document.getElementById('image_url').value = data.image;
             document.getElementById('edit_newImg').src = data.image;
-            console.log(document.getElementById('newImg').src);
-
+            // console.log(data.medical_clearance_status);
 
         } catch (e) {
             unauthorized(e.response.status);
@@ -133,6 +136,10 @@
             let address = document.getElementById('edit_address').value;
             let driving_history = document.getElementById('edit_driving_history').value;
             let medical_clearance_status = document.getElementById('edit_medical_clearance_status').value;
+            let status = document.getElementById('edit_status').value;
+
+            let image = document.getElementById('edit_image').files[0];
+            let imgae_url = document.getElementById('image_url').value;
             let id = document.getElementById('updateID').value;
 
             document.getElementById('update-modal-close').click();
@@ -147,15 +154,22 @@
             formData.append('address', address);
             formData.append('driving_history', driving_history);
             formData.append('medical_clearance_status', medical_clearance_status);
-            formData.append('image', document.getElementById('edit_image').files[0]);
+            formData.append('status', status);
             formData.append('id', id);
-
+            if (image) {
+                formData.append('image', image);
+                console.log(formData.get('image'));
+            } else {
+                console.log(imgae_url);
+                formData.append('image_url', imgae_url);
+            }
             const config = {
                 headers: {
                     'content-type': 'multipart/form-data',
                     ...HeaderToken().headers
                 }
             };
+            // console.log(formData.get('status'));
 
             showLoader();
 
@@ -165,10 +179,13 @@
             if (res.data.status === "success") {
                 successToast(res.data.message);
                 let modal = new bootstrap.Modal(document.getElementById('update-modal'));
+                document.getElementById('update-form').reset();
                 modal.hide();
                 await getList();
             } else {
+                console.log(res.data.message);
                 errorToast(res.data.message);
+
             }
 
         } catch (e) {

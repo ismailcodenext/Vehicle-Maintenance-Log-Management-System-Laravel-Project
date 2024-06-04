@@ -7,7 +7,7 @@
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
-                            <h4 style="color: white">Test List</h4>
+                            <h4 style="color: white">Vehicles Documents & Registrations List</h4>
                         </div>
                         <div class="align-items-center col actionBtns ">
                             <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end "> <span><i class="fa-solid fa-plus"></i></span>
@@ -22,7 +22,23 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>Vehicle</th>
+                                <th>Registration Number</th>
+                                <th>Registration Expiry Date</th>
+                                <th>Insurance Number</th>
+                                <th>Insurance Expiry Date</th>
+                                <th>Tax Token Number</th>
+                                <th>Tax Token Expiry Date</th>
+                                <th>Fitness Number</th>
+                                <th>Fitness Expiry Date</th>
+                                <th>Permit Number</th>
+                                <th>Permit Expiry Date</th>
+                                <th>Road Worthiness Number</th>
+                                <th>Road Worthiness Expiry Date</th>
+                                <th>Emission Test Number</th>
+                                <th>Emission Test Expiry Date</th>
+                                <th>Note</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -45,13 +61,13 @@
 
 
 <script>
-
     getList();
+
     async function getList() {
 
         try {
             showLoader();
-            let res=await axios.get("/list-test",HeaderToken());
+            let res=await axios.get("/list-vehicles-documents",HeaderToken());
             hideLoader();
 
             let tableList=$("#tableList");
@@ -60,11 +76,26 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-            res.data['Test_data'].forEach(function (item,index) {
+            res.data['vehicles_data'].forEach(function (item,index) {
                 let row=`<tr>
                     <td>${index+1}</td>
-                    <td>${item['name']}</td>
-
+                    <td>${item['vehicle_id']}</td>
+                    <td>${item['registration_number']} </td>
+                    <td>${item['registration_expiry_date']}</td>
+                    <td>${item['insurance_number'] ? item['insurance_number']: 'none'}</td>
+                    <td>${item['insurance_expiry_date'] ? item['insurance_expiry_date']: 'none'}</td>
+                    <td>${item['tax_token_number']}</td>
+                    <td>${item['tax_token_expiry_date']}</td>
+                    <td>${item['fitness_certificate_number']}</td>
+                    <td>${item['fitness_certificate_expiry_date']}</td>
+                    <td>${item['permit_number']}</td>
+                    <td>${item['permit_expiry_date']}</td>
+                    <td>${item['road_worthiness_certificate_number'] ? item['road_worthiness_certificate_number']: 'none'}</td>
+                    <td>${item['road_worthiness_certificate_expiry_date'] ? item['road_worthiness_certificate_expiry_date']: 'none'}</td>
+                    <td>${item['emission_test_certificate_number'] ? item['emission_test_certificate_number']: 'none'}</td>
+                    <td>${item['emission_test_certificate_expiry_date'] ? item['emission_test_certificate_expiry_date']: 'none'}</td>
+                    <td>${item['note'] ? item['note']: 'none'}</td>
+                    <td>${item['status']}</td>
                     <td>
                      <div style="display: flex;" class="modelBtn">
 

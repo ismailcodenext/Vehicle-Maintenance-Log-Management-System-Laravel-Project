@@ -2,15 +2,15 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Permission</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update Role</h5>
             </div>
             <div class="modal-body">
                 <form id="update-form">
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
-                                <label class="form-label"> Permission Name *</label>
-                                <input type="text" class="form-control form_input" id="PermissionNameUpdate">
+                                <label class="form-label"> Role Name *</label>
+                                <input type="text" class="form-control form_input" id="RoleNameUpdate">
                                 <input class="d-none" id="updateID">
                             </div>
                         </div>
@@ -30,11 +30,11 @@
         try {
             document.getElementById('updateID').value = id;
             showLoader();
-            let res = await axios.post("/permission-by-id", { id: id.toString() }, HeaderToken());
+            let res = await axios.post("/role-by-id", { id: id.toString() }, HeaderToken());
             hideLoader();
 
             let data = res.data.rows;
-            document.getElementById('PermissionNameUpdate').value = data.name;
+            document.getElementById('RoleNameUpdate').value = data.name;
         } catch (e) {
             unauthorized(e.response.status);
         }
@@ -43,13 +43,13 @@
 
     async function Update() {
         try {
-            let PermissionNameUpdate = document.getElementById('PermissionNameUpdate').value;
+            let RoleNameUpdate = document.getElementById('RoleNameUpdate').value;
             let updateID = document.getElementById('updateID').value;
 
             document.getElementById('update-modal-close').click();
 
             let formData = new FormData();
-            formData.append('name', PermissionNameUpdate);
+            formData.append('name', RoleNameUpdate);
             formData.append('id', updateID);
 
             const config = {
@@ -61,7 +61,7 @@
 
             showLoader();
 
-            let res = await axios.post("/update-permission", formData, config);
+            let res = await axios.post("/update-role", formData, config);
             hideLoader();
 
             if (res.data.status === "success") {
@@ -78,3 +78,4 @@
         }
     }
 </script>
+

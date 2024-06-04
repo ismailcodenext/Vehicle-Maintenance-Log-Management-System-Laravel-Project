@@ -7,7 +7,7 @@
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
-                            <h4 style="color: white">Test List</h4>
+                            <h4 style="color: white">Vehicles List</h4>
                         </div>
                         <div class="align-items-center col actionBtns ">
                             <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end "> <span><i class="fa-solid fa-plus"></i></span>
@@ -22,7 +22,18 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>Category</th>
+{{--                                <th>Driver</th>--}}
+                                <th>Brand</th>
+                                <th>Model</th>
+                                <th>Year</th>
+                                <th>VIN</th>
+                                <th>License</th>
+                                <th>Color</th>
+                                <th>Mileage</th>
+                                <th>Purchase Date</th>
+                                <th>History</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -45,13 +56,13 @@
 
 
 <script>
-
     getList();
+
     async function getList() {
 
         try {
             showLoader();
-            let res=await axios.get("/list-test",HeaderToken());
+            let res=await axios.get("/list-vehicles",HeaderToken());
             hideLoader();
 
             let tableList=$("#tableList");
@@ -60,10 +71,20 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-            res.data['Test_data'].forEach(function (item,index) {
+            res.data['vehicles_data'].forEach(function (item,index) {
                 let row=`<tr>
                     <td>${index+1}</td>
-                    <td>${item['name']}</td>
+                    <td>${item['category']['category_name']}</td>
+                    <td>${item['brand']}</td>
+                    <td>${item['model']}</td>
+                    <td>${item['year']}</td>
+                    <td>${item['vin']}</td>
+                    <td>${item['license_plate']}</td>
+                    <td>${item['color']}</td>
+                    <td>${item['mileage']}</td>
+                    <td>${item['purchase_date']}</td>
+                    <td>${item['history']}</td>
+                    <td>${item['status']}</td>
 
                     <td>
                      <div style="display: flex;" class="modelBtn">
