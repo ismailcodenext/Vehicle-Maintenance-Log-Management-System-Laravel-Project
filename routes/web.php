@@ -1,19 +1,20 @@
 <?php
 
 
-use App\Http\Controllers\DriverController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\VehicleAssignedToDriveController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DriverController;
 
 
 
 // ------------Controller Work By  start--------------------
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\VehiclesCategoryController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ServiceProviderController;
+use App\Http\Controllers\VehiclesCategoryController;
+use App\Http\Controllers\VehicleAssignedToDriveController;
 use App\Http\Controllers\vehicleDocumentRegistrationController;
 
 // ------------Controller Work By  End--------------------
@@ -48,6 +49,7 @@ Route::view('/vehiclesDocumentsPage', 'pages.back-end-page.vehicles_documents.ve
 Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
 Route::view('/roles', 'pages.back-end-page.role-permission.role.role-page');
 Route::view('/vehicleAssignedToDriverPage', 'pages.back-end-page.vehicle-assigned-to-driver.vehicle-assigned-to-driver-page');
+Route::view('/serviceProviderPage', 'pages.back-end-page.service-provider.service-provider-page');
 
 // User Web API Routes
 // Route::post('/user-registration', [UserController::class, 'UserRegistration'])->middleware('auth:sanctum');
@@ -132,3 +134,9 @@ Route::post("/create-vehicle-assigned-to-driver", [VehicleAssignedToDriveControl
 Route::post("/vehicle-assigned-to-driver-by-id", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverById'])->middleware('auth:sanctum');
 Route::post("/update-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverUpdate'])->middleware('auth:sanctum');
 Route::post("/delete-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverDelete'])->middleware('auth:sanctum');
+
+Route::get('/list-service-provider', [ServiceProviderController::class, 'serviceProviderList'])->middleware('auth:sanctum');
+Route::post('/create-service-provider', [ServiceProviderController::class, 'serviceProviderCreate'])->middleware('auth:sanctum');
+Route::post('/service-provider-by-id', [ServiceProviderController::class, 'serviceProviderById'])->middleware('auth:sanctum');
+Route::post('/update-service-provider', [ServiceProviderController::class, 'serviceProviderUpdate'])->middleware('auth:sanctum');
+Route::post('/delete-service-provider', [ServiceProviderController::class, 'serviceProviderDelete'])->middleware('auth:sanctum');
