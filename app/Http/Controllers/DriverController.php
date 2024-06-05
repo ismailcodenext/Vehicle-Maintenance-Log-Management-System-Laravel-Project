@@ -13,7 +13,8 @@ class DriverController extends Controller
     public function DriverList()
     {
         try {
-            $driver_data = Driver::get();
+            $user_id = Auth::id();
+            $driver_data = Driver::where('user_id', $user_id)->get();
             return response()->json(['status' => 'success', 'Driver_data' => $driver_data]);
         } catch (Exception $e) {
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
