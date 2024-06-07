@@ -12,8 +12,10 @@ use App\Http\Controllers\DriverController;
 // ------------Controller Work By  start--------------------
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\VehiclesCategoryController;
+use App\Http\Controllers\MaintenanceRecordController;
 use App\Http\Controllers\VehicleAssignedToDriveController;
 use App\Http\Controllers\vehicleDocumentRegistrationController;
 
@@ -44,7 +46,9 @@ Route::view('/userProfile', 'pages.dashboard.profile-page');
 Route::view('/testPage', 'pages.back-end-page.test.test-page');
 Route::view('/vehiclesCategoryPage', 'pages.back-end-page.vehicles_categories.vehicles_categories_page');
 Route::view('/driverPage', 'pages.back-end-page.driver.driver-page');
+Route::view('/serviceTypePage', 'pages.back-end-page.service_type.service_type_page');
 Route::view('/vehiclesPage', 'pages.back-end-page.vehicles.vehicles_page');
+Route::view('/maintenancePage', 'pages.back-end-page.maintenance.maintenance_page');
 Route::view('/vehiclesDocumentsPage', 'pages.back-end-page.vehicles_documents.vehicles_documents_registrations_page');
 Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
 Route::view('/roles', 'pages.back-end-page.role-permission.role.role-page');
@@ -140,3 +144,17 @@ Route::post('/create-service-provider', [ServiceProviderController::class, 'serv
 Route::post('/service-provider-by-id', [ServiceProviderController::class, 'serviceProviderById'])->middleware('auth:sanctum');
 Route::post('/update-service-provider', [ServiceProviderController::class, 'serviceProviderUpdate'])->middleware('auth:sanctum');
 Route::post('/delete-service-provider', [ServiceProviderController::class, 'serviceProviderDelete'])->middleware('auth:sanctum');
+
+
+Route::get("/list-service-type", [ServiceTypeController::class, 'ServiceTypeList'])->middleware('auth:sanctum');
+Route::post("/create-service-type", [ServiceTypeController::class, 'ServiceTypeCreate'])->middleware('auth:sanctum');
+Route::post("/service-type-by-id", [ServiceTypeController::class, 'ServiceTypeById'])->middleware('auth:sanctum');
+Route::post("/update-service-type", [ServiceTypeController::class, 'ServiceTypeUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-service-type", [ServiceTypeController::class, 'ServiceTypeDelete'])->middleware('auth:sanctum');
+
+
+Route::get("/list-maintenance", [MaintenanceRecordController::class, 'MaintenanceList'])->middleware('auth:sanctum');
+Route::post("/create-maintenance", [MaintenanceRecordController::class, 'MaintenanceCreate'])->middleware('auth:sanctum');
+Route::post("/maintenance-by-id", [MaintenanceRecordController::class, 'MaintenanceById'])->middleware('auth:sanctum');
+Route::post("/update-maintenance", [MaintenanceRecordController::class, 'MaintenanceUpdate'])->middleware('auth:sanctum');
+Route::post("/delete-maintenance", [MaintenanceRecordController::class, 'MaintenanceDelete'])->middleware('auth:sanctum');

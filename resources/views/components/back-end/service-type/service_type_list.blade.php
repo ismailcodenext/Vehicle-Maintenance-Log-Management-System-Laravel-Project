@@ -7,7 +7,7 @@
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
-                            <h4 style="color: white">Vehicles Category List</h4>
+                            <h4 style="color: white">Service Type List</h4>
                         </div>
                         <div class="align-items-center col actionBtns ">
                             <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end "> <span><i class="fa-solid fa-plus"></i></span>
@@ -21,13 +21,13 @@
                         <table class="table invoice_table" id="tableData">
                             <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Maximum Load Capacity</th>
-                                <th>Seating Capacity</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Id</th>
+                                <th>Servicetype Id</th>
+                                <th>Service_name</th>
+                                <th>Service_provider_id</th>
+                                <th>Service interval</th>
+                                <th>service_description</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody id="tableList">
@@ -55,7 +55,7 @@
 
         try {
             showLoader();
-            let res=await axios.get("/list-vehicles-category",HeaderToken());
+            let res=await axios.get("/list-service-type",HeaderToken());
             hideLoader();
 
             let tableList=$("#tableList");
@@ -64,14 +64,18 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-              res.data['vehicles_data'].forEach(function (item, index) {
+              res.data['servicetype_data'].forEach(function (item, index) {
                     let statusColor = item['status'] === 'Active' ? 'background-color: ; color: white;' : 'background-color: yellow; color: black;';
                     let row = `<tr>
-                        <td>${index + 1}</td>
-                        <td>${item['category_name']}</td>
-                        <td>${item['description']}</td>
-                        <td>${item['maximum_load_capacity']} Kg</td>
-                        <td>${item['seating_capacity']}</td>
+
+                        <td>${item['id']}</td>
+                        <td>${item['service_type_id']}</td>
+                        <td>${item['service_name']}</td>
+                        <td>${item['service_provider_id']} Kg</td>
+                        <td>${item['service_interval']}</td>
+                        <td>${item['service_description']}</td>
+
+
                         <td style="${statusColor}">${item['status']}</td>
                         <td>
                             <div style="display: flex;" class="modelBtn">

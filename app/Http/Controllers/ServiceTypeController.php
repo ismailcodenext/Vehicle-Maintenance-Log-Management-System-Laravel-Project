@@ -96,7 +96,7 @@ class ServiceTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    function VehiclesCategoryDelete(Request $request)
+    function ServiceTypeDelete(Request $request)
     {
         try {
             $request->validate([

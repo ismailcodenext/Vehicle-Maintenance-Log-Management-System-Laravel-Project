@@ -410,8 +410,18 @@
 
                         <li>
                             <div class="iocn-link">
+                                <a href="/serviceTypePage">
+                                    serviceType
+                                </a>
+                            </div>
+                            <div class="iocn-link">
                                 <a href="/serviceProviderPage">
                                     Service Provider
+                                </a>
+                            </div>
+                            <div class="iocn-link">
+                                <a href="/maintenancePage">
+                                    Maintenance Record
                                 </a>
                             </div>
 
