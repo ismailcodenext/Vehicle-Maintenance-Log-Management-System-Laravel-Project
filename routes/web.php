@@ -52,6 +52,7 @@ Route::view('/maintenancePage', 'pages.back-end-page.maintenance.maintenance_pag
 Route::view('/vehiclesDocumentsPage', 'pages.back-end-page.vehicles_documents.vehicles_documents_registrations_page');
 Route::view('/permissions', 'pages.back-end-page.role-permission.permission.permission-page');
 Route::view('/roles', 'pages.back-end-page.role-permission.role.role-page');
+Route::view('/roles-permission', 'pages.back-end-page.role-permission.all-roles-permission.roles-permission-page');
 Route::view('/vehicleAssignedToDriverPage', 'pages.back-end-page.vehicle-assigned-to-driver.vehicle-assigned-to-driver-page');
 Route::view('/serviceProviderPage', 'pages.back-end-page.service-provider.service-provider-page');
 
@@ -119,19 +120,26 @@ Route::Post("/update-vehicles-documents", [VehicleDocumentRegistrationController
 Route::post("/delete-vehicles-documents", [VehicleDocumentRegistrationController::class, 'VehicleDocumentsDelete'])->middleware('auth:sanctum');
 
 
-//Permission route all route
+//Permission all route
 Route::get("/list-permission", [PermissionController::class, 'permissionList'])->middleware('auth:sanctum');
 Route::post("/create-permission", [PermissionController::class, 'permissionCreate'])->middleware('auth:sanctum');
 Route::post("/permission-by-id", [PermissionController::class, 'permissionById'])->middleware('auth:sanctum');
 Route::post("/update-permission", [PermissionController::class, 'permissionUpdate'])->middleware('auth:sanctum');
 Route::post("/delete-permission", [PermissionController::class, 'permissionDelete'])->middleware('auth:sanctum');
 
-//Permission route all route
+//Roles all route
 Route::get("/list-role", [RoleController::class, 'roleList'])->middleware('auth:sanctum');
 Route::post("/create-role", [RoleController::class, 'roleCreate'])->middleware('auth:sanctum');
 Route::post("/role-by-id", [RoleController::class, 'roleById'])->middleware('auth:sanctum');
 Route::post("/update-role", [RoleController::class, 'roleUpdate'])->middleware('auth:sanctum');
 Route::post("/delete-role", [RoleController::class, 'roleDelete'])->middleware('auth:sanctum');
+
+Route::get("/list-roles-permission", [RoleController::class, 'listRolesPermission'])->middleware('auth:sanctum');
+Route::post("/add-permission-to-role", [RoleController::class, 'addPermissionToRole'])->middleware('auth:sanctum');
+Route::get("/list-roles", [RoleController::class, 'listRoles'])->middleware('auth:sanctum');
+Route::get("/list-permissions-grouped", [RoleController::class, 'listPermissionsGrouped'])->middleware('auth:sanctum');
+
+
 
 Route::get("/list-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverList'])->middleware('auth:sanctum');
 Route::post("/create-vehicle-assigned-to-driver", [VehicleAssignedToDriveController::class, 'vehicleAssignedToDriverCreate'])->middleware('auth:sanctum');

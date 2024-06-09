@@ -6,12 +6,12 @@
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
-                            <h4 style="color: white">Permission List</h4>
+                            <h4 style="color: white">All Roles Permission</h4>
                         </div>
                         <div class="align-items-center col actionBtns ">
                             <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end "> <span><i
                                         class="fa-solid fa-plus"></i></span>
-                                Create</button>
+                                Add Role in Permission</button>
                         </div>
                     </div>
 
@@ -20,12 +20,12 @@
                     <div class="table-responsive">
                         <table class="table invoice_table" id="tableData">
                             <thead>
-                                <tr>
-{{--                                    <th>No</th>--}}
-                                    <th>Name</th>
-                                    <th>Group</th>
-                                    <th>Action</th>
-                                </tr>
+                            <tr>
+                                <th>No</th>
+                                <th>Roles Name</th>
+                                <th>Permission Name</th>
+                                <th>Action</th>
+                            </tr>
                             </thead>
                             <tbody id="tableList">
 
@@ -50,7 +50,7 @@
     async function getList() {
         try {
             showLoader();
-            let res = await axios.get("/list-permission", HeaderToken());
+            let res = await axios.get("/list-roles-permission", HeaderToken());
             hideLoader();
 
             let tableList = $("#tableList");
@@ -59,12 +59,15 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-            res.data['permissions'].forEach(function(item, index) {
+            res.data['roles'].forEach(function(item, index) {
+                let permissions = item['permissions'].map(permission => permission['name']).join(', ');
                 let row = `<tr>
+                    <td>${index+1}</td>
                     <td>${item['name']}</td>
-                    <td>${item['group']}</td>
+                    <td>${permissions}</td>
                     <td>
                      <div style="display: flex;" class="modelBtn">
+
 
                             <button data-id="${item['id']}" class="float-end editBtn"> <span><i class="fa-solid fa-pen-to-square"></i></span>
                                 Edit</button>
@@ -72,7 +75,6 @@
 
                             <button data-id="${item['id']}" class="float-end deleteBtn"><i class="fa-solid fa-trash"></i>
                                 Delete</button>
-
                         </div>
                     </td>
                  </tr>`
@@ -105,3 +107,4 @@
 
     }
 </script>
+

@@ -65,13 +65,13 @@
                     <td>
                      <div style="display: flex;" class="modelBtn">
 
+
                             <button data-id="${item['id']}" class="float-end editBtn"> <span><i class="fa-solid fa-pen-to-square"></i></span>
                                 Edit</button>
 
 
                             <button data-id="${item['id']}" class="float-end deleteBtn"><i class="fa-solid fa-trash"></i>
                                 Delete</button>
-
                         </div>
                     </td>
                  </tr>`

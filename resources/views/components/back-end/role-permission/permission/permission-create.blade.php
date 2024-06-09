@@ -13,6 +13,10 @@
                                 <label class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="name">
                             </div>
+                            <div class="col-12 p-1">
+                                <label class="form-label">Group <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form_input" id="group">
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -30,13 +34,16 @@
     async function Save() {
         try {
             let name = document.getElementById('name').value;
+            let group = document.getElementById('group').value;
 
             if (name.length === 0) {
                 errorToast("Name Required !");
+                errorToast("Group Required !")
             } else {
                 document.getElementById('modal-close').click();
                 let formData = new FormData();
                 formData.append('name', name);
+                formData.append('group', group);
 
                 const config = {
                     headers: {

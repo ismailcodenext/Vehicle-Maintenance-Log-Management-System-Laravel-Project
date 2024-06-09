@@ -31,7 +31,8 @@ class PermissionController extends Controller
     {
         try {
             Permission::create([
-                'name' => $request->input('name')
+                'name' => $request->input('name'),
+                'group' => $request->input('group')
             ]);
 
             return response()->json([
