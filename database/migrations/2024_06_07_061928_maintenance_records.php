@@ -23,20 +23,22 @@ return new class extends Migration
     {
         Schema::create('maintenance_records', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vehicle_id');
+
             $table->date('date_of_service');
             $table->integer('mileage_at_service');
-            $table->unsignedBigInteger('service_type_id');
-            $table->unsignedBigInteger('service_provider_type_id');
             $table->text('description_of_service')->nullable();
             $table->decimal('cost', 10, 2)->nullable();
             $table->string('image_upload')->nullable();
+            $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('service_provider_id');
+            $table->unsignedBigInteger('service_type_id');
             $table->unsignedBigInteger('user_id');
 
 
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->restrictOnDelete()->cascadeOnUpdate();
+
+            $table->foreign('service_provider_id')->references('id')->on('service_providers')->restrictOnDelete()->cascadeOnUpdate();
             $table->foreign('service_type_id')->references('id')->on('service_types')->restrictOnDelete()->cascadeOnUpdate();
-            $table->foreign('service_provider_type_id')->references('id')->on('service_providers')->restrictOnDelete()->cascadeOnUpdate();
 
             $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete()->cascadeOnUpdate();
 

@@ -9,5 +9,18 @@ class ServiceProvider extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'address',
+        'status',
+        'user_id'
+    ];
+
+    // Define the relationship with ServiceType
+    public function serviceTypes()
+    {
+        return $this->hasMany(ServiceType::class);
+    }
 }

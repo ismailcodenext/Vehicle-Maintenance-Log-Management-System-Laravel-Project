@@ -11,16 +11,29 @@ class ServiceTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
+//    public function ServiceTypeList()
+//    {
+//        try {
+//            $ServiceType_list = ServiceType::with(['serviceProvider',])->get();
+//            return response()->json(['status' => 'success', 'servicetype_data' => $ServiceType_list]);
+//        } catch (Exception $e) {
+//            return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
+//        }
+//    }
+
+
     public function ServiceTypeList()
     {
         try {
-            $ServiceType_list = ServiceType::with(['serviceProvider',])->get();
-            // $ServiceType_list = ServiceType::get();
+            $ServiceType_list = ServiceType::with(['serviceProvider'])->get();
             return response()->json(['status' => 'success', 'servicetype_data' => $ServiceType_list]);
         } catch (Exception $e) {
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,21 +41,19 @@ class ServiceTypeController extends Controller
     public function ServiceTypeCreate(Request $request)
     {
         try {
-            $request->validate([
-                'id' => 'required|integer',
-                'service_type_id' => 'required|integer',
-                'service_name' => 'required|string|max:255',
-                'service_provider_id' => 'required|integer|exists:serviceProvider,id',
-                'service_interval' => 'nullable',
-                'service_description' => 'nullable|string',
-                'user_id' => 'required|integer|exists:users,id',
-            ]);
+//            $request->validate([
+//
+//                'service_name' => 'required|string|max:255',
+//                'service_provider_id' => 'required|integer|exists:serviceProvider,id',
+//                'service_interval' => 'nullable',
+//                'service_description' => 'nullable|string',
+//                'user_id' => 'required|integer|exists:users,id',
+//            ]);
 
             // Create new Vehicles Catagory
             $user_id = Auth::id();
             ServiceType::create([
-                'id' => $request->input('id'),
-                'service_type_id' => $request->input('service_type_id'),
+
                 'service_name' => $request->input('service_name'),
                 'service_interval' => $request->input('service_interval'),
                 'service_provider_id' => $request->input('service_provider_id'),
@@ -77,15 +88,13 @@ class ServiceTypeController extends Controller
     function ServiceTypeUpdate(Request $request)
     {
         try {
-            ServiceType::where('id', $request->input('id'))->update([
-                'id' => $request->input('id'),
-                'service_type_id' => $request->input('service_type_id'),
-                'service_name' => $request->input('service_name'),
-                'service_interval' => $request->input('service_interval'),
-                'service_provider_id' => $request->input('service_provider_id'),
-                'service_description'=>$request->input('service_description'),
+            $ServiceTypeUpdate = ServiceType::find($request->input('id'));
+            $ServiceTypeUpdate->service_name = $request->input('service_name');
+            $ServiceTypeUpdate->service_interval = $request->input('service_interval');
+            $ServiceTypeUpdate->service_provider_id = $request->input('service_provider_id');
+            $ServiceTypeUpdate->service_description = $request->input('service_description');
 
-            ]);
+            $ServiceTypeUpdate->save();
 
             return response()->json(['status' => 'success', 'message' => 'ServiceType Update Successful']);
         } catch (Exception $e) {

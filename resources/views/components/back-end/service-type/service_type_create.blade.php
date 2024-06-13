@@ -9,15 +9,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
-                                <label class="form-label"> ID <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control form_input" id="id">
 
-                                <label class="form-label">Service Type ID <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control form_input" id="service_type_id">
-                                <label class="form-label">Service Name <span class="text-danger">*</span></label>
+                                <label class="form-label">Service Type Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="service_name">
 
-                                <label class="form-label">Service Provider ID <span class="text-danger">*</span></label>
+                                <label class="form-label">Service Provider<span class="text-danger">*</span></label>
                                 <select class="form-control form_input" id="service_provider_id">
                                     <option value="">Select Service Provider</option>
                                 </select>
@@ -41,48 +37,54 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    getServiceProviderList();
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     getServiceProviderList();
+// });
 
+// document.addEventListener('DOMContentLoaded', getServiceProviderList);
+getServiceProviderList()
 async function getServiceProviderList() {
     try {
-        showLoader();
-        let res = await axios.get("/list-service-provider", HeaderToken());
-        hideLoader();
-        const serviceProviders = res.data;
-        const select = document.getElementById('service_provider_id');
-        serviceProviders.forEach(function (provider) {
-            const option = document.createElement('option');
-            option.value = provider.id;
-            option.textContent = provider.name;
-            select.appendChild(option);
-        });
-    } catch (e) {
-        unauthorized(e.response.status);
+        const response = await fetch('/list-service-provider');
+        const data = await response.json();
+        if (data.status === "success") {
+            const vehicles = data.ServiceProvider_data; // Corrected key to match your provided data structure
+            const serviceProviderSelect = document.getElementById('service_provider_id');
+
+            vehicles.forEach(service_provider_id => {
+                const option = document.createElement('option');
+                option.value = service_provider_id.id;
+                option.textContent = service_provider_id.name; // Display the model as the option text
+                serviceProviderSelect.appendChild(option);
+            });
+        } else {
+            console.error('Failed to Service Provider data:', data);
+        }
+    } catch (error) {
+        console.error('Error fetching vehicle data:', error);
     }
+
 }
+
+
 
 async function Save() {
     try {
-        let id = document.getElementById('id').value;
-        let service_type_id = document.getElementById('service_type_id').value;
+
         let service_name = document.getElementById('service_name').value;
         let service_provider_id = document.getElementById('service_provider_id').value;
         let service_interval = document.getElementById('service_interval').value;
         let service_description = document.getElementById('service_description').value;
 
 
-        if (service_type_id.length === 0) {
-            errorToast("Service Type ID Required!");
-        } else if (service_name.length === 0) {
+
+       if (service_name.length === 0) {
             errorToast("Service Name Required!");
         } else if (service_provider_id.length === 0) {
             errorToast("Service Provider ID Required!");
         } else {
             let formData = new FormData();
-            formData.append('id', id);
-            formData.append('service_type_id', service_type_id);
+
             formData.append('service_name', service_name);
             formData.append('service_provider_id', service_provider_id);
             formData.append('service_interval', service_interval);

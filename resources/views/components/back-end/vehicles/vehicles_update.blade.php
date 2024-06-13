@@ -14,10 +14,6 @@
                                     <option value="none">Select Vehicle Category</option>
                                 </select>
 
-                                <label class="form-label">Driver</label>
-                                <select class="form-control form_input" id="update_driver">
-                                    <option value="none">Select Driver</option>
-                                </select>
 
                                 <label class="form-label"> Brand Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="update_brand">
@@ -123,7 +119,6 @@
 
             let data = res.data.rows;
             document.getElementById('update_category').value = data.vehicle_category_id;
-            document.getElementById('update_driver').value = data.driver_id;
             document.getElementById('update_brand').value = data.brand;
             document.getElementById('update_model').value = data.model;
             document.getElementById('update_year').value = data.year;
@@ -143,7 +138,6 @@
     async function Update() {
         try {
             let  category       = document.getElementById('update_category').value;
-            let  driver         = document.getElementById('update_driver').value;
             let  brand          = document.getElementById('update_brand').value;
             let  model          = document.getElementById('update_model').value;
             let  year           = document.getElementById('update_year').value;
@@ -163,7 +157,6 @@
             let res = await axios.post("/update-vehicles", {
                 id: updateID,
                 category: category,
-                driver: driver,
                 brand: brand,
                 model: model,
                 year: year,

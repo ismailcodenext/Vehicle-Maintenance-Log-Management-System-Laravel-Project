@@ -12,39 +12,86 @@ class MaintenanceRecordController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function MaintanceList()
+    public function MaintenanceList()
     {
         try {
-            $MaintenanceRecord_list = MaintenanceRecord::with(['serviceType','vehicle','serviceProviderType'])->get();
-            // $ServiceType_list = ServiceType::get();
-            return response()->json(['status' => 'success', 'MaintenanceRecord_data' => $MaintenanceRecord_list]);
+            $maintenanceRecords = MaintenanceRecord::with(['serviceType', 'vehicle', 'serviceProvider'])->get();
+            return response()->json(['status' => 'success', 'MaintenanceRecord_data' => $maintenanceRecords]);
         } catch (Exception $e) {
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
-    public function MaintanceCreate(Request $request)
+//    public function MaintenanceCreate(Request $request)
+//    {
+//        try {
+////             $request->validate([
+////                'vehicle_id' => 'required|exists:vehicles,id',
+////                'date_of_service' => 'required|date',
+////                'mileage_at_service' => 'required|integer',
+////                'service_type_id' => 'required|exists:service_types,id',
+////                'description_of_service' => 'nullable|string',
+////                'cost' => 'nullable|numeric',
+////                'image_upload' => 'nullable|image',
+////
+////            ]);
+//            $img = $request->file('img');
+//            $t = time();
+//            $file_name = $img->getClientOriginalName();
+//            $img_name = "{$t}-{$file_name}";
+//            $img_url = "uploads/maintenance-img/{$img_name}";
+//            $img->move(public_path('uploads/maintenance-img'), $img_name);
+//
+//            $user_id = Auth::id();
+//            MaintenanceRecord::create([
+//                'vehicle_id' => $request->input('vehicle_id'),
+//                'date_of_service' => $request->input('date_of_service'),
+//                'mileage_at_service' => $request->input('mileage_at_service'),
+//                'service_type_id' => $request->input('service_type_id'),
+//                'service_provider_id' => $request->input('service_provider_id'),
+//                'description_of_service'=>$request->input('description_of_service'),
+//                'cost'=>$request->input('cost'),
+//                'image_upload'=>$img_url,
+//                'user_id' => $user_id
+//            ]);
+//
+//
+//            return response()->json(['status' => 'success', 'message' => 'Maintenance created successfully']);
+//        } catch (Exception $e) {
+//            // Handle exceptions
+//            return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
+//        }
+//    }
+
+
+
+    public function MaintenanceCreate(Request $request)
     {
+        $request->validate([
+            'vehicle_id' => 'required|exists:vehicles,id',
+            'date_of_service' => 'required|date',
+            'mileage_at_service' => 'required|integer',
+            'service_type_id' => 'required|exists:service_types,id',
+            'service_provider_id' => 'required|exists:service_providers,id',
+            'description_of_service' => 'nullable|string',
+            'cost' => 'nullable|numeric',
+            'img' => 'nullable|image',
+        ]);
+
         try {
-             $request->validate([
-                'vehicle_id' => 'required|exists:vehicles,id',
-                'date_of_service' => 'required|date',
-                'mileage_at_service' => 'required|integer',
-                'service_type_id' => 'required|exists:service_types,id',
-                'description_of_service' => 'nullable|string',
-                'cost' => 'nullable|numeric',
-                'image_upload' => 'nullable|image',
-                'user_id' => 'required|exists:users,id',
-            ]);
             $img = $request->file('img');
-            $t = time();
-            $file_name = $img->getClientOriginalName();
-            $img_name = "{$t}-{$file_name}";
-            $img_url = "uploads/user-img/{$img_name}";
-            $img->move(public_path('uploads/user-img'), $img_name);
+            $img_url = null;
+            if ($img) {
+                $t = time();
+                $file_name = $img->getClientOriginalName();
+                $img_name = "{$t}-{$file_name}";
+                $img_url = "uploads/maintenance-img/{$img_name}";
+                $img->move(public_path('uploads/maintenance-img'), $img_name);
+            }
 
             $user_id = Auth::id();
             MaintenanceRecord::create([
@@ -52,25 +99,25 @@ class MaintenanceRecordController extends Controller
                 'date_of_service' => $request->input('date_of_service'),
                 'mileage_at_service' => $request->input('mileage_at_service'),
                 'service_type_id' => $request->input('service_type_id'),
-                'service_provider_type_id' => $request->input('service_provider_type_id'),
-                'description_of_service'=>$request->input('description_of_service'),
-                'cost'=>$request->input('cost'),
-                'image_upload'=>$img_url,
+                'service_provider_id' => $request->input('service_provider_id'),
+                'description_of_service' => $request->input('description_of_service'),
+                'cost' => $request->input('cost'),
+                'image_upload' => $img_url,
                 'user_id' => $user_id
             ]);
 
-
             return response()->json(['status' => 'success', 'message' => 'Maintenance created successfully']);
         } catch (Exception $e) {
-            // Handle exceptions
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      */
-    function MaintanceById(Request $request){
+    function MaintenanceById(Request $request){
         try {
             $request->validate(["id" => 'required|string']);
 
@@ -81,7 +128,7 @@ class MaintenanceRecordController extends Controller
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
         }
     }
-    function MaintanceUpdate(Request $request)
+    function MaintenanceUpdate(Request $request)
     {
         try {
             $img = $request->file('img');
@@ -112,7 +159,7 @@ class MaintenanceRecordController extends Controller
     /**
      * Display the specified resource.
      */
-    function MaintanceDelete(Request $request)
+    function MaintenanceDelete(Request $request)
     {
         try {
             $request->validate([

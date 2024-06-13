@@ -6,7 +6,7 @@
                 <div class="wrapper">
                     <div class="row justify-content-between mt-2">
                         <div class="align-items-center col">
-                            <h4 style="color: white">Test List</h4>
+                            <h4 style="color: white">Service Provider List</h4>
                         </div>
                         <div class="align-items-center col actionBtns ">
                             <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end "> <span><i

@@ -1,4 +1,3 @@
-
 <div class="home">
     <!-- Dashboard Content Start -->
     <div class="content_wrapper">
@@ -22,9 +21,8 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Servicetype Id</th>
                                 <th>Service_name</th>
-                                <th>Service_provider_id</th>
+                                <th>Service_provider</th>
                                 <th>Service interval</th>
                                 <th>service_description</th>
                                 <th>Actions</th>
@@ -64,33 +62,27 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
-              res.data['servicetype_data'].forEach(function (item, index) {
-                    let statusColor = item['status'] === 'Active' ? 'background-color: ; color: white;' : 'background-color: yellow; color: black;';
-                    let row = `<tr>
-
-                        <td>${item['id']}</td>
-                        <td>${item['service_type_id']}</td>
-                        <td>${item['service_name']}</td>
-                        <td>${item['service_provider_id']} Kg</td>
-                        <td>${item['service_interval']}</td>
-                        <td>${item['service_description']}</td>
-
-
-                        <td style="${statusColor}">${item['status']}</td>
-                        <td>
-                            <div style="display: flex;" class="modelBtn">
-                                <button data-id="${item['id']}" class="float-end editBtn">
-                                    <span><i class="fa-solid fa-pen-to-square"></i></span> Edit
-                                </button>
-                                <button data-id="${item['id']}" class="float-end deleteBtn">
-                                    <i class="fa-solid fa-trash"></i> Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>`;
-                    tableList.append(row);
-                });
-
+            res.data['servicetype_data'].forEach(function (item, index) {
+                let serviceProviderName = item['service_provider'] ? item['service_provider']['name'] : 'N/A';
+                let row = `<tr>
+                    <td>${item['id']}</td>
+                    <td>${item['service_name']}</td>
+                    <td>${serviceProviderName}</td>
+                    <td>${item['service_interval']}</td>
+                    <td>${item['service_description']}</td>
+                    <td>
+                        <div style="display: flex;" class="modelBtn">
+                            <button data-id="${item['id']}" class="float-end editBtn">
+                                <span><i class="fa-solid fa-pen-to-square"></i></span> Edit
+                            </button>
+                            <button data-id="${item['id']}" class="float-end deleteBtn">
+                                <i class="fa-solid fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+                tableList.append(row);
+            });
 
             $('.editBtn').on('click', async function () {
                 let id= $(this).data('id');
@@ -109,11 +101,9 @@
                 lengthMenu:[5,10,15,20,30]
             });
 
-
-        }catch (e) {
+        } catch (e) {
             unauthorized(e.response.status)
         }
-
     }
 
 </script>

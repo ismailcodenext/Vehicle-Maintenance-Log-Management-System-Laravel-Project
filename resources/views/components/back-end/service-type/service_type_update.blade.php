@@ -9,17 +9,14 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
-                                <label class="form-label">ID <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control form_input" id="update_id" readonly>
-                                <label class="form-label">Service Type ID <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control form_input" id="update_service_type_id" readonly>
-                                <label class="form-label">Service Name <span class="text-danger">*</span></label>
+                                <label class="form-label">Service Type Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form_input" id="update_service_name">
 
-                                <label class="form-label">Service Provider ID <span class="text-danger">*</span></label>
+                                <label class="form-label">Service Provider Name <span class="text-danger">*</span></label>
                                 <select class="form-control form_input" id="update_service_provider_id">
-                                    <option value="">Select Service Provider</option>
+                                    <option value="none">Select Service Provider</option>
                                 </select>
+
 
                                 <label class="form-label">Service Interval</label>
                                 <input type="number" class="form-control form_input" id="update_service_interval">
@@ -47,33 +44,39 @@ document.addEventListener('DOMContentLoaded', function () {
     getServiceProviderList();
 });
 
-async function getServiceProviderList() {
+document.addEventListener('DOMContentLoaded', servicesProviderIDName);
+
+async function servicesProviderIDName() {
     try {
-        showLoader();
-        let res = await axios.get("/list-service-provider", HeaderToken());
-        hideLoader();
-        const serviceProviders = res.data;
-        const select = document.getElementById('update_service_provider_id');
-        serviceProviders.forEach(function (provider) {
-            const option = document.createElement('option');
-            option.value = provider.id;
-            option.textContent = provider.name;
-            select.appendChild(option);
-        });
-    } catch (e) {
-        unauthorized(e.response.status);
+        const response = await fetch('/list-service-provider');
+        const data = await response.json();
+
+        if (data.status === "success") {
+            const vehicles = data.ServiceProvider_data;
+            const categorySelect = document.getElementById('update_service_provider_id');
+
+            vehicles.forEach(provider => {
+                const option = document.createElement('option');
+                option.value = provider.id;
+                option.textContent = provider.name;
+                categorySelect.appendChild(option);
+            });
+        } else {
+            console.error('Failed to fetch vehicle data:', data);
+        }
+    } catch (error) {
+        console.error('Error fetching vehicle data:', error);
     }
 }
 
 async function FillUpUpdateForm(id) {
     try {
         showLoader();
-        let res = await axios.post("/service-type-by-id", { id: id.toString(), service_type_id: service_type_id.toString() }, HeaderToken());
+        let res = await axios.post("/service-type-by-id",  { id: id.toString() }, HeaderToken());
         hideLoader();
 
         let data = res.data.rows;
         document.getElementById('updateID').value = data.id;
-        document.getElementById('update_service_type_id').value = data.service_type_id;
         document.getElementById('update_service_name').value = data.service_name;
         document.getElementById('update_service_provider_id').value = data.service_provider_id;
         document.getElementById('update_service_interval').value = data.service_interval;
@@ -85,28 +88,30 @@ async function FillUpUpdateForm(id) {
 
 async function Update() {
     try {
-        let id = document.getElementById('updateID').value;
-        let service_type_id = document.getElementById('update_service_type_id').value;
+        let updateID = document.getElementById('updateID').value;
         let service_name = document.getElementById('update_service_name').value;
         let service_provider_id = document.getElementById('update_service_provider_id').value;
         let service_interval = document.getElementById('update_service_interval').value;
         let service_description = document.getElementById('update_service_description').value;
-        let user_id = document.getElementById('update_user_id').value;
 
-        if (service_type_id.length === 0) {
-            errorToast("Service Type ID Required!");
-        } else if (service_name.length === 0) {
+        if (service_name.length === 0) {
             errorToast("Service Name Required!");
         } else if (service_provider_id.length === 0) {
-            errorToast("Service Provider ID Required!");
+            errorToast("Service Provider Required!");
         } else {
             let formData = new FormData();
-            formData.append('id', id);
-            formData.append('service_type_id', service_type_id);
+            formData.append('id', updateID);
             formData.append('service_name', service_name);
             formData.append('service_provider_id', service_provider_id);
             formData.append('service_interval', service_interval);
             formData.append('service_description', service_description);
+
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data',
+                    ...HeaderToken().headers
+                }
+            };
 
 
             document.getElementById('update-modal-close').click();

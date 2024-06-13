@@ -12,24 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('service_types', function (Blueprint $table) {
-            // Composite Primary Key
-            $table->unsignedBigInteger('id');
-            $table->unsignedBigInteger('service_type_id');
-            $table->primary(['id', 'service_type_id']);
-
-            // Other columns
+            $table->id();
             $table->string('service_name');
-            $table->unsignedBigInteger('service_provider_id');
             $table->integer('service_interval')->nullable();
             $table->text('service_description')->nullable();
+            $table->unsignedBigInteger('service_provider_id');
             $table->unsignedBigInteger('user_id');
+
+            $table->foreign('service_provider_id')->references('id')->on('service_providers')->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete()->cascadeOnUpdate();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            // Foreign Key Constraints
-            $table->foreign('service_provider_id')->references('id')->on('service_providers')->restrictOnDelete()->cascadeOnUpdate();
-            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete()->cascadeOnUpdate();
         });
     }
 
